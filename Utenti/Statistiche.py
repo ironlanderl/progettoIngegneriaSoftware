@@ -2,7 +2,7 @@ import matplotlib.pyplot as plt
 
 class Statistiche:
     def __init__(self):
-        self.report = ""
+        self.report: str = ""
         self.tabella_mesi = ["Gen", "Feb", "Mar", "Apr", "Mag", "Giu", "Lug", "Ago", "Set", "Ott", "Nov", "Dic"]
         self.tabella_numero_clienti = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
 
