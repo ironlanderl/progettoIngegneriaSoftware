@@ -1,1 +1,1 @@
-# File richiesto per l'autodiscovers dei test
+# File richiesto per autodiscover dei test

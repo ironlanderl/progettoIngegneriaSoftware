@@ -5,13 +5,13 @@ class GestioneUtenti:
     def __init__(self):
         self._utenti: list[Utente] = []
 
-    def aggiungi_utente(self):
+    def aggiungi_utente(self, nome: str, cognome: str, username: str, password: str):
         raise NotImplementedError
 
-    def rimuovi_utente(self):
+    def rimuovi_utente(self, username: str):
         raise NotImplementedError
 
-    def get_utente(self) -> Utente:
+    def get_utente(self, username: str) -> Utente:
         raise NotImplementedError
 
     def salva_su_file(self, nome_file: str):
