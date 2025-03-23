@@ -31,6 +31,7 @@ class TestUtenti(unittest.TestCase):
             gestore = GestioneUtenti()
             gestore.leggi_da_file(f"{temp_dir}/test.json")
             self.assertEqual(gestore, gestore_clone)
+
     
     def test_creazione_utente(self):
         utente = Utente("Mario", "Rossi", "mario.rossi", "password")

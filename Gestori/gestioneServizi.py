@@ -5,7 +5,13 @@ class GestioneServizi:
     def __init__(self):
         self._servizi: list[Servizio] = []
 
-    def aggiungi_servizio(self):
+    def aggiungi_campo_bocce(self, costo: float, descrizione: str, nome_servizio: str, numero_campi: int, opzioni_pagamento: str):
+        raise NotImplementedError
+
+    def aggiungi_sala_biliardino(self, costo: float, descrizione: str, nome_servizio: str, numero_tavoli: int):
+        raise NotImplementedError
+
+    def aggiungi_tavolo_biliardino(self, costo: float, descrizione: str, nome_servizio: str, costo_per_partita: float):
         raise NotImplementedError
 
     def rimuovi_servizio(self):
