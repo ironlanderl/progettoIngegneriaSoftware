@@ -1,18 +1,22 @@
 import json
 from Servizi.Servizio import Servizio
+from Servizi.CampoBocce import CampoBocce
+from Servizi.SalaBiliardo import SalaBiliardo
+from Servizi.TavoloBiliardino import TavoloBiliardino
+
 
 class GestioneServizi:
     def __init__(self):
         self._servizi: list[Servizio] = []
 
     def aggiungi_campo_bocce(self, costo: float, descrizione: str, nome_servizio: str, numero_campi: int, opzioni_pagamento: str):
-        raise NotImplementedError
+        self._servizi.append(CampoBocce(costo, descrizione, nome_servizio, numero_campi, opzioni_pagamento))
 
-    def aggiungi_sala_biliardino(self, costo: float, descrizione: str, nome_servizio: str, numero_tavoli: int):
-        raise NotImplementedError
+    def aggiungi_sala_biliardo(self, costo: float, descrizione: str, nome_servizio: str, numero_tavoli: int):
+        self._servizi.append(SalaBiliardo(costo, descrizione, nome_servizio, numero_tavoli))
 
     def aggiungi_tavolo_biliardino(self, costo: float, descrizione: str, nome_servizio: str, costo_per_partita: float):
-        raise NotImplementedError
+        self._servizi.append(TavoloBiliardino(costo, descrizione, nome_servizio, costo_per_partita))
 
     def rimuovi_servizio(self):
         raise NotImplementedError

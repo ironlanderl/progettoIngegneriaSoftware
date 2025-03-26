@@ -59,7 +59,7 @@ class TestServizi(unittest.TestCase):
 
     def test_aggiungi_sala_biliardo(self):
         gestore = GestioneServizi()
-        gestore.aggiungi_sala_biliardino(20.0, "Sala biliardo", "Sala Biliardo 1", 3)
+        gestore.aggiungi_sala_biliardo(20.0, "Sala biliardo", "Sala Biliardo 1", 3)
         self.assertEqual(len(gestore._servizi), 1)
 
     def test_aggiungi_tavolo_biliardino(self):
@@ -84,7 +84,7 @@ class TestServizi(unittest.TestCase):
         # Creo un gestore e aggiungo servizi
         gestore = GestioneServizi()
         gestore.aggiungi_campo_bocce(15.0, "Campo da bocce", "Campo Bocce 1", 2, "Contanti/Carta")
-        gestore.aggiungi_sala_biliardino(20.0, "Sala biliardo", "Sala Biliardo 1", 3)
+        gestore.aggiungi_sala_biliardo(20.0, "Sala biliardo", "Sala Biliardo 1", 3)
         gestore.aggiungi_tavolo_biliardino(5.0, "Tavolo da biliardino", "Biliardino 1", 2.5)
 
         # Uso un file temporaneo per il test
