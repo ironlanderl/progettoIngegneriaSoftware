@@ -5,13 +5,13 @@ class GestioneEventi:
     def __init__(self):
         self._eventi: list[Tornei] = []
 
-    def aggiungi_evento(self):
+    def aggiungi_evento(self, data: str, numero_partecipanti: int, tipo: str):
         raise NotImplementedError
 
-    def rimuovi_evento(self):
+    def rimuovi_evento(self, data: str):
         raise NotImplementedError
 
-    def visualizza_eventi(self):
+    def get_evento(self, data: str):
         raise NotImplementedError
 
     def salva_su_file(self, nome_file: str):
