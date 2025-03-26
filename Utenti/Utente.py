@@ -1,5 +1,7 @@
 class Utente:
     def __init__(self, nome: str, cognome: str, username: str, password: str):
+        self._nome: str = ""
+        self._cognome: str = ""
         self._password: str = ""
         self._username: str = ""
         self.nome: str = nome
