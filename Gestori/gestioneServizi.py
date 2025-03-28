@@ -18,11 +18,11 @@ class GestioneServizi:
     def aggiungi_tavolo_biliardino(self, costo: float, descrizione: str, nome_servizio: str, costo_per_partita: float):
         self._servizi.append(TavoloBiliardino(costo, descrizione, nome_servizio, costo_per_partita))
 
-    def rimuovi_servizio(self):
-        raise NotImplementedError
+    def rimuovi_servizio(self, servizio: Servizio):
+        self._servizi.remove(servizio)
 
-    def get_servizio(self) -> Servizio:
-        raise NotImplementedError
+    def get_servizi(self) -> list[Servizio]:
+        return self._servizi
 
     def salva_su_file(self, nome_file: str):
         with open(nome_file, "w") as f:
