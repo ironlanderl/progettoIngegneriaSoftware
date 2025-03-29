@@ -1,7 +1,7 @@
 from datetime import datetime
 
 
-class Tornei:
+class Torneo:
     def __init__(self, data: str, numero_partecipanti: int, tipo: str):
         self._numero_partecipanti: int = -1
         self._data: datetime = datetime.fromtimestamp(0)
