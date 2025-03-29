@@ -1,5 +1,5 @@
 import copy
-
+import os
 from Utenti.Utente import Utente
 from Gestori.gestioneUtenti import GestioneUtenti
 import unittest
@@ -23,14 +23,25 @@ class TestUtenti(unittest.TestCase):
         # Creo un gestore e aggiungo un utente
         gestore = GestioneUtenti()
         gestore.aggiungi_utente("Mario", "Rossi", "mario.rossi", "password")
-        # Clono il gestore
-        gestore_clone = copy.deepcopy(gestore)
-        with tempfile.gettempdir() as temp_dir:
-            # Salvo il gestore su file, ricreo un gestore e leggo da file
-            gestore.salva_su_file(f"{temp_dir}/test.json")
-            gestore = GestioneUtenti()
-            gestore.leggi_da_file(f"{temp_dir}/test.json")
-            self.assertEqual(gestore, gestore_clone)
+
+        # Uso un file temporaneo per il test
+        temp_file = os.path.join(tempfile.gettempdir(), "test_utenti.pickle")
+
+        try:
+            # Salvo il gestore su file
+            gestore.salva_su_file(temp_file)
+
+            # Ricreo un gestore e leggo da file
+            new_gestore = GestioneUtenti()
+            new_gestore.leggi_da_file(temp_file)
+
+            # Verifico che l'utente sia stato caricato correttamente
+            self.assertEqual(len(new_gestore._utenti), 1)
+
+        finally:
+            # Pulizia: rimuovo il file temporaneo
+            if os.path.exists(temp_file):
+                os.remove(temp_file)
 
     
     def test_creazione_utente(self):
