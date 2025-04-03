@@ -27,7 +27,7 @@ class Feedback:
         try:
             tmp: datetime = datetime.strptime(value, "%Y-%m-%d %H:%M:%S")
         except:
-            raise ValueError("La data è in un forato errato")
+            raise ValueError("La data è in un formato errato")
 
         self._data = tmp
 
