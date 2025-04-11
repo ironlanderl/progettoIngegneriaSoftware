@@ -1,13 +1,22 @@
+import uuid
+
 class Servizio:
     def __init__(self, costo: float, descrizione: str, nome_servizio: str):
-        self._costo: float = -1
+        # Usa un ID univoco per un riferimento più semplice se necessario in seguito
+        self._id = str(uuid.uuid4()) 
+        self._costo: float = -1.0
         self._descrizione: str = ""
         self._nome_servizio: str = ""
-
+        # Aggiungi uno stato per il servizio (es. disponibile, manutenzione)
+        self._stato: str = "Disponibile" # Stato predefinito
 
         self.costo: float = costo
         self.nome_servizio: str = nome_servizio
         self.descrizione: str = descrizione
+
+    @property
+    def id(self):
+        return self._id
 
     @property
     def costo(self):
@@ -15,9 +24,9 @@ class Servizio:
 
     @costo.setter
     def costo(self, costo: float):
-        if costo < 0.0:
-            raise ValueError("Il costo non può essere negativo")
-        self._costo = costo
+        if not isinstance(costo, (int, float)) or costo < 0.0:
+            raise ValueError("Il costo deve essere un numero non negativo")
+        self._costo = float(costo)
 
     @property
     def descrizione(self):
@@ -25,9 +34,9 @@ class Servizio:
 
     @descrizione.setter
     def descrizione(self, descrizione: str):
-        if descrizione == "":
+        if not isinstance(descrizione, str) or descrizione.strip() == "":
             raise ValueError("La descrizione non può essere vuota")
-        self._descrizione = descrizione
+        self._descrizione = descrizione.strip()
 
     @property
     def nome_servizio(self):
@@ -35,6 +44,32 @@ class Servizio:
 
     @nome_servizio.setter
     def nome_servizio(self, nome_servizio: str):
-        if nome_servizio == "":
+        if not isinstance(nome_servizio, str) or nome_servizio.strip() == "":
             raise ValueError("Il nome_servizio non può essere vuoto")
-        self._nome_servizio = nome_servizio
+        # Considera un controllo di unicità a livello di gestore se necessario
+        self._nome_servizio = nome_servizio.strip()
+
+    @property
+    def stato(self):
+        return self._stato
+
+    @stato.setter
+    def stato(self, value: str):
+        # Validazione di base dello stato, si potrebbe usare un Enum
+        stati_permissi = ["Disponibile", "Prenotato", "In Manutenzione"]
+        if value not in stati_permissi:
+            raise ValueError(f"Stato non valido. Stati permessi: {', '.join(stati_permissi)}")
+        self._stato = value
+
+    # Rendi gli oggetti confrontabili per ordinamento o ricerca se necessario
+    def __eq__(self, other):
+        if not isinstance(other, Servizio):
+            return NotImplemented
+        return self.id == other.id
+
+    def __hash__(self):
+        return hash(self.id)
+
+    # Rappresentazione per debugging/logging
+    def __repr__(self):
+        return f"{self.__class__.__name__}(id={self.id}, nome='{self.nome_servizio}', costo={self.costo}, stato='{self.stato}')"
