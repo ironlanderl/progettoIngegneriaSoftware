@@ -1,7 +1,7 @@
 import copy
 import os
 from Eventi.Torneo import Torneo
-from Gestori.gestioneEventi import GestioneEventi
+from Gestori.gestione_eventi import GestioneEventi
 import unittest
 import tempfile
 from datetime import datetime, timedelta

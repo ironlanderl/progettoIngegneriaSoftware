@@ -13,7 +13,7 @@ class Feedback:
     @contenuto.setter
     def contenuto(self, value):
         if value == "":
-            raise ValueException("Il contenuto del feedback non può essere vuoto")
+            raise ValueError("Il contenuto del feedback non può essere vuoto")
         self._contenuto = value
 
     @property

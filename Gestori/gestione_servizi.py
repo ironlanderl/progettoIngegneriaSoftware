@@ -1,4 +1,4 @@
-import json
+import pickle
 from Servizi.Servizio import Servizio
 from Servizi.CampoBocce import CampoBocce
 from Servizi.SalaBiliardo import SalaBiliardo
@@ -30,10 +30,19 @@ class GestioneServizi:
     def update_servizio(self, vecchio_servizio: Servizio, nuovo_servizio: Servizio):
         self._servizi[self._get_servizio_index(vecchio_servizio)] = nuovo_servizio
 
+    def get_servizio(self, name: str):
+        for servizio in self._servizi:
+            if servizio.nome_servizio == name:
+                return servizio
+
+    def rimuovi_servizio(self, name: str):
+        self._servizi.remove(self.get_servizio(name))
+
+    # FIXME: La serializzazione non funziona. Priorità media
     def salva_su_file(self, nome_file: str):
         with open(nome_file, "w") as f:
-            json.dump(self._servizi, f)
+            pickle.dump(self._servizi, f)
 
     def leggi_da_file(self, nome_file: str):
         with open(nome_file, "r") as f:
-            self._servizi = json.load(f)
+            self._servizi = pickle.load(f)

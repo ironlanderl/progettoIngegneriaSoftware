@@ -42,24 +42,7 @@ class Servizio:
         # Considera un controllo di unicità a livello di gestore se necessario
         self._nome_servizio = nome_servizio.strip()
 
-    @property
-    def stato(self):
-        return self._stato
-
-    @stato.setter
-    def stato(self, value: str):
-        # Validazione di base dello stato, si potrebbe usare un Enum
-        stati_permissi = ["Disponibile", "Prenotato", "In Manutenzione"]
-        if value not in stati_permissi:
-            raise ValueError(f"Stato non valido. Stati permessi: {', '.join(stati_permissi)}")
-        self._stato = value
-
-    # Rendi gli oggetti confrontabili per ordinamento o ricerca se necessario
-    def __eq__(self, other):
-        if not isinstance(other, Servizio):
-            return NotImplemented
-        return self.id == other.id
 
     # Rappresentazione per debugging/logging
     def __repr__(self):
-        return f"{self.__class__.__name__}(id={self.id}, nome='{self.nome_servizio}', costo={self.costo}, stato='{self.stato}')"
+        return f"{self.__class__.__name__}(nome='{self.nome_servizio}', costo={self.costo}, stato='{self.stato}')"

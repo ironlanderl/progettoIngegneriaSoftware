@@ -7,7 +7,7 @@ from Servizi.Servizio import Servizio
 from Servizi.CampoBocce import CampoBocce
 from Servizi.SalaBiliardo import SalaBiliardo
 from Servizi.TavoloBiliardino import TavoloBiliardino
-from Gestori.gestioneServizi import GestioneServizi
+from Gestori.gestione_servizi import GestioneServizi
 
 
 class TestServizi(unittest.TestCase):

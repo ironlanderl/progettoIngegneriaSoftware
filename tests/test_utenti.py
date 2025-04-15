@@ -1,7 +1,7 @@
 import copy
 import os
 from Utenti.Utente import Utente
-from Gestori.gestioneUtenti import GestioneUtenti
+from Gestori.gestione_utenti import GestioneUtenti
 import unittest
 import tempfile
 

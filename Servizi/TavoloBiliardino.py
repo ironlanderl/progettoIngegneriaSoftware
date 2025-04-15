@@ -4,7 +4,7 @@ import uuid
 
 class TavoloBiliardino(Servizio):
     def __init__(self, costo: float, descrizione: str, nome_servizio: str, costo_per_partita: float):
-        super().__init__(costo_per_partita, descrizione, nome_servizio)
+        super().__init__(costo, descrizione, nome_servizio)
         self._costo_per_partita: float = -1.0
         self.costo_per_partita: float = costo_per_partita
 
