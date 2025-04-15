@@ -3,20 +3,13 @@ import uuid
 class Servizio:
     def __init__(self, costo: float, descrizione: str, nome_servizio: str):
         # Usa un ID univoco per un riferimento più semplice se necessario in seguito
-        self._id = str(uuid.uuid4()) 
         self._costo: float = -1.0
         self._descrizione: str = ""
         self._nome_servizio: str = ""
-        # Aggiungi uno stato per il servizio (es. disponibile, manutenzione)
-        self._stato: str = "Disponibile" # Stato predefinito
 
         self.costo: float = costo
         self.nome_servizio: str = nome_servizio
         self.descrizione: str = descrizione
-
-    @property
-    def id(self):
-        return self._id
 
     @property
     def costo(self):
@@ -66,9 +59,6 @@ class Servizio:
         if not isinstance(other, Servizio):
             return NotImplemented
         return self.id == other.id
-
-    def __hash__(self):
-        return hash(self.id)
 
     # Rappresentazione per debugging/logging
     def __repr__(self):

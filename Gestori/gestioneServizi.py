@@ -24,6 +24,12 @@ class GestioneServizi:
     def get_servizi(self) -> list[Servizio]:
         return self._servizi
 
+    def _get_servizio_index(self, servizio: Servizio):
+        return self._servizi.index(servizio)
+
+    def update_servizio(self, vecchio_servizio: Servizio, nuovo_servizio: Servizio):
+        self._servizi[self._get_servizio_index(vecchio_servizio)] = nuovo_servizio
+
     def salva_su_file(self, nome_file: str):
         with open(nome_file, "w") as f:
             json.dump(self._servizi, f)
