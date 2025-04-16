@@ -17,7 +17,7 @@ class Ui(QtWidgets.QMainWindow):
         self.utente_loggato = None # Inizialmente nessun utente loggato
         self.login_dialog = None # Instance of LoginRegistrazioneForm
 
-        self.aggiorna_header_login() # Imposta l'header iniziale
+        self.aggiorna_elementi()
 
         # Connetti i segnali clicked() dei bottoni (servizi)
         self.btnCampiBoccie.clicked.connect(self.apri_campi_boccie)
@@ -30,13 +30,17 @@ class Ui(QtWidgets.QMainWindow):
         # Connetti il bottone Login/Logout
         self.btnLoginLogout.clicked.connect(self.gestisci_login_logout)
 
-    def aggiorna_header_login(self):
+    def aggiorna_elementi(self):
+        self.btnAmministratore.setEnabled(False)
         if self.utente_loggato:
             self.lblUtenteLoggato.setText(f"Utente loggato: {self.utente_loggato}")
             self.btnLoginLogout.setText("Logout")
+            if self.utente_loggato.amministratore:
+                self.btnAmministratore.setEnabled(True)
         else:
             self.lblUtenteLoggato.setText("Utente non loggato")
             self.btnLoginLogout.setText("Login")
+
 
     def gestisci_login_logout(self):
         if self.utente_loggato:
@@ -60,13 +64,13 @@ class Ui(QtWidgets.QMainWindow):
 
     def on_login_success(self, username):
         self.utente_loggato = username
-        self.aggiorna_header_login()
+        self.aggiorna_elementi()
         print(f"Login effettuato con successo per l'utente: {username}")
 
 
     def esegui_logout(self):
         self.utente_loggato = None
-        self.aggiorna_header_login()
+        self.aggiorna_elementi()
         print("Logout effettuato.")
 
     def apri_campi_boccie(self):

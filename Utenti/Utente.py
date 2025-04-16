@@ -12,6 +12,9 @@ class Utente:
         self.username: str = username
         self.password: str = password
 
+        self._amministratore = False
+        
+
     @property
     def nome(self):
         return self._nome
@@ -55,6 +58,14 @@ class Utente:
         if self._password == password:
             raise ValueError("La password è uguale a quella attuale")
         self._password = password
+
+    @property
+    def amministratore(self):
+        return self._amministratore
+
+    @amministratore.setter
+    def amministratore(self, amministratore: bool):
+        self._amministratore = amministratore
 
     @override
     def __str__(self):

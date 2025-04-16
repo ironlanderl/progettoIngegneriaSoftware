@@ -8,6 +8,13 @@ class GestioneUtenti:
         # Caricamento automatico
         if os.path.exists("utenti.pickle"):
             self.leggi_da_file("utenti.pickle")
+        else:
+            # Creazione di un account di default
+            utente: Utente = Utente(nome="admin", cognome="admin", username="admin", password="adminadmin")
+            utente.amministratore = True
+            self._utenti.append(utente)
+            self.salva_su_file("utenti.pickle")
+
 
     def aggiungi_utente(self, nome: str, cognome: str, username: str, password: str) -> Utente:
         utente: Utente = Utente(nome, cognome, username, password)
