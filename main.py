@@ -1,16 +1,50 @@
-# This is a sample Python script.
+from typing import override
+from PyQt6 import QtWidgets, uic
+from PyQt6.QtWidgets import QComboBox, QPlainTextEdit, QPushButton
+import sys
+import random
+import pprint
 
-# Press Shift+F10 to execute it or replace it with your code.
-# Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
+class Test():
+    def __init__(self, number: int):
+        self.number = number
+
+    @override
+    def __str__(self) -> str:
+        return f"Test: {self.number}"
 
 
-def print_hi(name):
-    # Use a breakpoint in the code line below to debug your script.
-    print(f'Hi, {name}')  # Press Ctrl+F8 to toggle the breakpoint.
+class Ui(QtWidgets.QMainWindow):
+    def __init__(self):
+        super(Ui, self).__init__()
+        uic.loadUi('./windows/testing.ui', self)
+
+        self.test1 = Test(10)
+        self.test2 = Test(20)
+        self.test3 = Test(30)
 
 
-# Press the green button in the gutter to run the script.
-if __name__ == '__main__':
-    print_hi('PyCharm')
+        # Azioni Pulsanti
+        self.btnCopyText.clicked.connect(self.copyButtonPressed)
+        self.btnCopyCombo.clicked.connect(self.cmbButtonPressed)
 
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
+        # Popolamento combobox
+        self.populate_combobox()
+    
+
+        self.show()
+
+    def copyButtonPressed(self):
+        self.txtCopyOutput.insertPlainText(str(random.randint(0, 100)))
+
+    def cmbButtonPressed(self):
+        self.txtComboOutput.setText(self.cmbInput.currentText())
+        print("Current combo index: ", self.cmbInput.currentIndex())
+
+    def populate_combobox(self):
+        self.cmbInput.clear()
+        self.cmbInput.addItems([str(self.test1), str(self.test2), str(self.test3)])
+
+app = QtWidgets.QApplication(sys.argv)
+window = Ui()
+app.exec()
