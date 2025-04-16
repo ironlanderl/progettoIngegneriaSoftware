@@ -1,3 +1,6 @@
+from typing import override
+
+
 class Utente:
     def __init__(self, nome: str, cognome: str, username: str, password: str):
         self._nome: str = ""
@@ -53,3 +56,6 @@ class Utente:
             raise ValueError("La password è uguale a quella attuale")
         self._password = password
 
+    @override
+    def __str__(self):
+        return self.username

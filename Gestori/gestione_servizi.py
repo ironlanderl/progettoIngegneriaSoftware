@@ -38,11 +38,10 @@ class GestioneServizi:
     def rimuovi_servizio(self, name: str):
         self._servizi.remove(self.get_servizio(name))
 
-    # FIXME: La serializzazione non funziona. Priorità media
     def salva_su_file(self, nome_file: str):
-        with open(nome_file, "w") as f:
+        with open(nome_file, "wb") as f:
             pickle.dump(self._servizi, f)
 
     def leggi_da_file(self, nome_file: str):
-        with open(nome_file, "r") as f:
+        with open(nome_file, "rb") as f:
             self._servizi = pickle.load(f)
