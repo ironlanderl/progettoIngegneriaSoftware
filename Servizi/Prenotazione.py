@@ -1,20 +1,19 @@
 import datetime
 from enum import Enum
 from Servizi.Servizio import Servizio
-from Utenti.Cliente import Cliente
 
 class Prenotazione:
-    def __init__(self, servizio: Servizio, data: datetime.datetime, durata: datetime.timedelta, cliente_prenotazione: Cliente):
+    def __init__(self, servizio: Servizio, data: datetime.datetime, durata: datetime.timedelta, utente_prenotazione: str):
         self._servizio: Servizio|None = None
         self._data: datetime.datetime = datetime.datetime(1970, 1, 1, 0, 0)
         self._durata: datetime.timedelta = datetime.timedelta(hours=0, minutes=0)
-        self._cliente_prenotazione: Cliente|None = None
+        self._utente_prenotazione: str|None = None
 
         # Use setters for validation
         self.id_servizio = servizio
         self.data = data
         self.durata = durata
-        self.cliente_prenotazione = cliente_prenotazione
+        self.utente_prenotazione = utente_prenotazione
 
 
     @property
@@ -61,11 +60,9 @@ class Prenotazione:
         return self._servizio.costo * self.durata
 
     @property
-    def cliente_prenotazione(self):
-        return self._cliente_prenotazione
+    def utente_prenotazione(self):
+        return self._utente_prenotazione
 
-    @cliente_prenotazione.setter
-    def cliente_prenotazione(self, value: Cliente):
-        if not isinstance(value, Cliente) or not value:
-            raise ValueError("Il cliente deve essere un'istanza di Cliente.")
-        self._cliente_prenotazione = value
+    @utente_prenotazione.setter
+    def utente_prenotazione(self, value: str):
+        self._utente_prenotazione = value

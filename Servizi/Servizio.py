@@ -1,4 +1,5 @@
-import uuid
+import datetime
+from typing import override
 
 class Servizio:
     def __init__(self, costo: float, descrizione: str, nome_servizio: str):
@@ -42,7 +43,12 @@ class Servizio:
         # Considera un controllo di unicità a livello di gestore se necessario
         self._nome_servizio = nome_servizio.strip()
 
+    def calcola_costo(self, durata_prenotazione: datetime.timedelta) -> float:
+        ore_totali = durata_prenotazione.total_seconds() / 3600
+        costo_completo = self.costo * ore_totali
+        return round(costo_completo, 2)
+ 
+    @override
+    def __str__(self) -> str:
+        return self.nome_servizio
 
-    # Rappresentazione per debugging/logging
-    def __repr__(self):
-        return f"{self.__class__.__name__}(nome='{self.nome_servizio}', costo={self.costo}, stato='{self.stato}')"

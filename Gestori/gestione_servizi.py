@@ -1,3 +1,4 @@
+import os
 import pickle
 from Servizi.Servizio import Servizio
 from Servizi.CampoBocce import CampoBocce
@@ -8,9 +9,27 @@ from Servizi.TavoloBiliardino import TavoloBiliardino
 class GestioneServizi:
     def __init__(self):
         self._servizi: list[Servizio] = []
+        if os.path.exists("servizi.pickle"):
+            self.leggi_da_file("servizi.pickle")
+        else:
+            # Creazione default
+            """
+            Attualmente sono presenti:
+            - 6 campi da bocce
+            ...
+            """
+            self.aggiungi_campo_bocce(nome_servizio="Campo da bocce 1", costo=10.0, descrizione="Campo da bocce 1")
+            self.aggiungi_campo_bocce(nome_servizio="Campo da bocce 2", costo=10.0, descrizione="Campo da bocce 2")
+            self.aggiungi_campo_bocce(nome_servizio="Campo da bocce 3", costo=10.0, descrizione="Campo da bocce 3")
+            self.aggiungi_campo_bocce(nome_servizio="Campo da bocce 4", costo=10.0, descrizione="Campo da bocce 4")
+            self.aggiungi_campo_bocce(nome_servizio="Campo da bocce 5", costo=10.0, descrizione="Campo da bocce 5")
+            self.aggiungi_campo_bocce(nome_servizio="Campo da bocce 6", costo=10.0, descrizione="Campo da bocce 6")
 
-    def aggiungi_campo_bocce(self, costo: float, descrizione: str, nome_servizio: str, numero_campi: int, opzioni_pagamento: str):
-        self._servizi.append(CampoBocce(costo, descrizione, nome_servizio, numero_campi, opzioni_pagamento))
+            # Creazione default completata
+            self.salva_su_file("servizi.pickle")
+
+    def aggiungi_campo_bocce(self, costo: float, descrizione: str, nome_servizio: str):
+        self._servizi.append(CampoBocce(costo, descrizione, nome_servizio))
 
     def aggiungi_sala_biliardo(self, costo: float, descrizione: str, nome_servizio: str, numero_tavoli: int):
         self._servizi.append(SalaBiliardo(costo, descrizione, nome_servizio, numero_tavoli))
@@ -34,6 +53,9 @@ class GestioneServizi:
         for servizio in self._servizi:
             if servizio.nome_servizio == name:
                 return servizio
+
+    def get_servizi_by_tipe(self, tipe: type):
+        return [servizio for servizio in self._servizi if isinstance(servizio, tipe)]
 
     def rimuovi_servizio(self, name: str):
         self._servizi.remove(self.get_servizio(name))

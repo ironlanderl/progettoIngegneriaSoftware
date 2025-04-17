@@ -3,19 +3,30 @@ from PyQt6 import QtWidgets, uic
 from PyQt6.QtWidgets import QComboBox, QPlainTextEdit, QPushButton
 import sys
 
+from Gestori import gestione_servizi
 from windows.login import LoginRegistrazioneForm
+from windows.campo_bocce import CampoBocceForm
+
+from Utenti.Utente import Utente
+
+from Servizi.CampoBocce import CampoBocce
 
 from Gestori.gestione_utenti import GestioneUtenti
+from Gestori.gestione_servizi import GestioneServizi
+from Gestori.gestione_prenotazioni import GestionePrenotazioni
 
 class Ui(QtWidgets.QMainWindow):
-    def __init__(self, gestore_utenti: GestioneUtenti):
+    def __init__(self, gestore_utenti: GestioneUtenti, gestore_servizi: GestioneServizi, gestore_prenotazioni: GestionePrenotazioni):
         super(Ui, self).__init__()
         uic.loadUi('./windows/main.ui', self)
 
         self.gestore_utenti = gestore_utenti
+        self.gestore_servizi = gestore_servizi
+        self.gestore_prenotazioni = gestore_prenotazioni
 
         self.utente_loggato = None # Inizialmente nessun utente loggato
         self.login_dialog = None # Instance of LoginRegistrazioneForm
+        self.campo_bocce_form = None
 
         self.aggiorna_elementi()
 
@@ -62,7 +73,7 @@ class Ui(QtWidgets.QMainWindow):
         self.login_dialog = None
 
 
-    def on_login_success(self, username):
+    def on_login_success(self, username: Utente):
         self.utente_loggato = username
         self.aggiorna_elementi()
         print(f"Login effettuato con successo per l'utente: {username}")
@@ -74,7 +85,10 @@ class Ui(QtWidgets.QMainWindow):
         print("Logout effettuato.")
 
     def apri_campi_boccie(self):
-        print("Bottone 'Campi da Boccie' cliccato!")
+        if self.campo_bocce_form is None:
+            self.campo_bocce_form = CampoBocceForm(self.gestore_servizi.get_servizi_by_tipe(CampoBocce), self.gestore_prenotazioni, self.utente_loggato)
+            self.campo_bocce_form.exec()
+            self.campo_bocce_form = None
 
     def apri_biliardino(self):
         print("Bottone 'Biliardino' cliccato!")
@@ -94,8 +108,10 @@ class Ui(QtWidgets.QMainWindow):
 if __name__ == "__main__":
     # Inizializzazione dei gestori
     gestore_utenti = GestioneUtenti()
+    gestore_servizi = GestioneServizi()
+    gestore_prenotazioni = GestionePrenotazioni()
 
     app = QtWidgets.QApplication(sys.argv)
-    window = Ui(gestore_utenti)
+    window = Ui(gestore_utenti, gestore_servizi, gestore_prenotazioni)
     window.show()
     app.exec()
