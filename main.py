@@ -3,13 +3,14 @@ from PyQt6 import QtWidgets, uic
 from PyQt6.QtWidgets import QComboBox, QPlainTextEdit, QPushButton
 import sys
 
-from Gestori import gestione_servizi
 from windows.login import LoginRegistrazioneForm
 from windows.campo_bocce import CampoBocceForm
+from windows.biliardino import PrenotazioneBiliardinoForm
 
 from Utenti.Utente import Utente
 
 from Servizi.CampoBocce import CampoBocce
+from Servizi.TavoloBiliardino import TavoloBiliardino
 
 from Gestori.gestione_utenti import GestioneUtenti
 from Gestori.gestione_servizi import GestioneServizi
@@ -27,6 +28,7 @@ class Ui(QtWidgets.QMainWindow):
         self.utente_loggato = None # Inizialmente nessun utente loggato
         self.login_dialog = None # Instance of LoginRegistrazioneForm
         self.campo_bocce_form = None
+        self.biliardino_form = None
 
         self.aggiorna_elementi()
 
@@ -91,7 +93,10 @@ class Ui(QtWidgets.QMainWindow):
             self.campo_bocce_form = None
 
     def apri_biliardino(self):
-        print("Bottone 'Biliardino' cliccato!")
+        if self.biliardino_form is None:
+            self.biliardino_form = PrenotazioneBiliardinoForm(self.gestore_servizi.get_servizi_by_tipe(TavoloBiliardino), self.gestore_prenotazioni, self.utente_loggato)
+            self.biliardino_form.exec()
+            self.biliardino_form = None
 
     def apri_torneo_burraco(self):
         print("Bottone 'Torneo Burraco' cliccato!")

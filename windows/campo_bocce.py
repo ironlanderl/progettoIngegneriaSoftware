@@ -1,4 +1,5 @@
 from PyQt6 import QtWidgets, uic
+from PyQt6.QtCore import QDate
 
 from Servizi.CampoBocce import CampoBocce
 from Gestori.gestione_prenotazioni import GestionePrenotazioni
@@ -30,7 +31,10 @@ class CampoBocceForm(QtWidgets.QDialog):
         campo_selezionato = self.campi[self.lstCampi.currentRow()]
         durata = self.tmeDurata.time().toPyTime()
         durata_delta = datetime.timedelta(hours=durata.hour, minutes=durata.minute, seconds=durata.second, microseconds=durata.microsecond)
-        prenotazione = self.gestore_prenotazioni.aggiungi_prenotazione(campo_selezionato, datetime.datetime.now(), durata_delta, self.utente.username)
+        data_prenotazione = self.dteDataPrenotazione.date().toPyDate()
+        ora_prenotazione = self.tmeDurata.time().toPyTime()
+        data_e_ora_prenotazione = datetime.datetime(data_prenotazione.year, data_prenotazione.month, data_prenotazione.day, ora_prenotazione.hour, ora_prenotazione.minute, ora_prenotazione.second)
+        prenotazione = self.gestore_prenotazioni.aggiungi_prenotazione(campo_selezionato, data_e_ora_prenotazione ,durata_delta, self.utente.username)
         self.accept()
 
 
@@ -51,9 +55,3 @@ class CampoBocceForm(QtWidgets.QDialog):
         durata_delta = datetime.timedelta(hours=durata.hour, minutes=durata.minute, seconds=durata.second, microseconds=durata.microsecond)
         costo_totale = campo_selezionato.calcola_costo(durata_delta)
         self.lblCostoTotale.setText(f"Costo totale: {costo_totale}€")
-
-if __name__ == '__main__':
-    app = QtWidgets.QApplication([])
-    finestra = MiaFinestra()
-    finestra.show()
-    app.exec_()

@@ -16,6 +16,7 @@ class GestioneServizi:
             """
             Attualmente sono presenti:
             - 6 campi da bocce
+            - 2 tavoli biliardino
             ...
             """
             self.aggiungi_campo_bocce(nome_servizio="Campo da bocce 1", costo=10.0, descrizione="Campo da bocce 1")
@@ -25,6 +26,8 @@ class GestioneServizi:
             self.aggiungi_campo_bocce(nome_servizio="Campo da bocce 5", costo=10.0, descrizione="Campo da bocce 5")
             self.aggiungi_campo_bocce(nome_servizio="Campo da bocce 6", costo=10.0, descrizione="Campo da bocce 6")
 
+            self.aggiungi_tavolo_biliardino(nome_servizio="Tavolo Biliardino 1", costo=10.0, descrizione="Tavolo Biliardino 1")
+            self.aggiungi_tavolo_biliardino(nome_servizio="Tavolo Biliardino 2", costo=10.0, descrizione="Tavolo Biliardino 2")
             # Creazione default completata
             self.salva_su_file("servizi.pickle")
 
@@ -34,8 +37,8 @@ class GestioneServizi:
     def aggiungi_sala_biliardo(self, costo: float, descrizione: str, nome_servizio: str, numero_tavoli: int):
         self._servizi.append(SalaBiliardo(costo, descrizione, nome_servizio, numero_tavoli))
 
-    def aggiungi_tavolo_biliardino(self, costo: float, descrizione: str, nome_servizio: str, costo_per_partita: float):
-        self._servizi.append(TavoloBiliardino(costo, descrizione, nome_servizio, costo_per_partita))
+    def aggiungi_tavolo_biliardino(self, costo: float, descrizione: str, nome_servizio: str):
+        self._servizi.append(TavoloBiliardino(costo, descrizione, nome_servizio))
 
     def rimuovi_servizio(self, servizio: Servizio):
         self._servizi.remove(servizio)
