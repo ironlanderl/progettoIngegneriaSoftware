@@ -1,0 +1,318 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>Dialog</class>
+ <widget class="QDialog" name="Dialog">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>450</width>
+    <height>400</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Modifica Orari</string>
+  </property>
+  <layout class="QVBoxLayout" name="verticalLayout_Main">
+   <item>
+    <widget class="QLabel" name="lblTitoloModificaOrari">
+     <property name="font">
+      <font>
+       <pointsize>14</pointsize>
+       <weight>75</weight>
+       <bold>true</bold>
+      </font>
+     </property>
+     <property name="text">
+      <string>Modifica Orari</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QGroupBox" name="groupBoxOrariApertura">
+     <property name="title">
+      <string>Orari Apertura</string>
+     </property>
+     <layout class="QFormLayout" name="formLayoutOrariApertura">
+      <item row="0" column="0">
+       <widget class="QLabel" name="lblLunediApertura">
+        <property name="text">
+         <string>Lunedì:</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="1">
+       <widget class="QTimeEdit" name="timeEditLunediApertura">
+        <property name="displayFormat">
+         <string>HH:mm</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="0">
+       <widget class="QLabel" name="lblMartediApertura">
+        <property name="text">
+         <string>Martedì:</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="1">
+       <widget class="QTimeEdit" name="timeEditMartediApertura">
+        <property name="displayFormat">
+         <string>HH:mm</string>
+        </property>
+       </widget>
+      </item>
+      <item row="2" column="0">
+       <widget class="QLabel" name="lblMercolediApertura">
+        <property name="text">
+         <string>Mercoledì:</string>
+        </property>
+       </widget>
+      </item>
+      <item row="2" column="1">
+       <widget class="QTimeEdit" name="timeEditMercolediApertura">
+        <property name="displayFormat">
+         <string>HH:mm</string>
+        </property>
+       </widget>
+      </item>
+      <item row="3" column="0">
+       <widget class="QLabel" name="lblGiovediApertura">
+        <property name="text">
+         <string>Giovedì:</string>
+        </property>
+       </widget>
+      </item>
+      <item row="3" column="1">
+       <widget class="QTimeEdit" name="timeEditGiovediApertura">
+        <property name="displayFormat">
+         <string>HH:mm</string>
+        </property>
+       </widget>
+      </item>
+      <item row="4" column="0">
+       <widget class="QLabel" name="lblVenerdiApertura">
+        <property name="text">
+         <string>Venerdì:</string>
+        </property>
+       </widget>
+      </item>
+      <item row="4" column="1">
+       <widget class="QTimeEdit" name="timeEditVenerdiApertura">
+        <property name="displayFormat">
+         <string>HH:mm</string>
+        </property>
+       </widget>
+      </item>
+      <item row="5" column="0">
+       <widget class="QLabel" name="lblSabatoApertura">
+        <property name="text">
+         <string>Sabato:</string>
+        </property>
+       </widget>
+      </item>
+      <item row="5" column="1">
+       <widget class="QTimeEdit" name="timeEditSabatoApertura">
+        <property name="displayFormat">
+         <string>HH:mm</string>
+        </property>
+       </widget>
+      </item>
+      <item row="6" column="0">
+       <widget class="QLabel" name="lblDomenicaApertura">
+        <property name="text">
+         <string>Domenica:</string>
+        </property>
+       </widget>
+      </item>
+      <item row="6" column="1">
+       <widget class="QTimeEdit" name="timeEditDomenicaApertura">
+        <property name="displayFormat">
+         <string>HH:mm</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item>
+    <widget class="QGroupBox" name="groupBoxOrariChiusura">
+     <property name="title">
+      <string>Orari Chiusura</string>
+     </property>
+     <layout class="QFormLayout" name="formLayoutOrariChiusura">
+      <item row="0" column="0">
+       <widget class="QLabel" name="lblLunediChiusura">
+        <property name="text">
+         <string>Lunedì:</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="1">
+       <widget class="QTimeEdit" name="timeEditLunediChiusura">
+        <property name="displayFormat">
+         <string>HH:mm</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="0">
+       <widget class="QLabel" name="lblMartediChiusura">
+        <property name="text">
+         <string>Martedì:</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="1">
+       <widget class="QTimeEdit" name="timeEditMartediChiusura">
+        <property name="displayFormat">
+         <string>HH:mm</string>
+        </property>
+       </widget>
+      </item>
+      <item row="2" column="0">
+       <widget class="QLabel" name="lblMercolediChiusura">
+        <property name="text">
+         <string>Mercoledì:</string>
+        </property>
+       </widget>
+      </item>
+      <item row="2" column="1">
+       <widget class="QTimeEdit" name="timeEditMercolediChiusura">
+        <property name="displayFormat">
+         <string>HH:mm</string>
+        </property>
+       </widget>
+      </item>
+      <item row="3" column="0">
+       <widget class="QLabel" name="lblGiovediChiusura">
+        <property name="text">
+         <string>Giovedì:</string>
+        </property>
+       </widget>
+      </item>
+      <item row="3" column="1">
+       <widget class="QTimeEdit" name="timeEditGiovediChiusura">
+        <property name="displayFormat">
+         <string>HH:mm</string>
+        </property>
+       </widget>
+      </item>
+      <item row="4" column="0">
+       <widget class="QLabel" name="lblVenerdiChiusura">
+        <property name="text">
+         <string>Venerdì:</string>
+        </property>
+       </widget>
+      </item>
+      <item row="4" column="1">
+       <widget class="QTimeEdit" name="timeEditVenerdiChiusura">
+        <property name="displayFormat">
+         <string>HH:mm</string>
+        </property>
+       </widget>
+      </item>
+      <item row="5" column="0">
+       <widget class="QLabel" name="lblSabatoChiusura">
+        <property name="text">
+         <string>Sabato:</string>
+        </property>
+       </widget>
+      </item>
+      <item row="5" column="1">
+       <widget class="QTimeEdit" name="timeEditSabatoChiusura">
+        <property name="displayFormat">
+         <string>HH:mm</string>
+        </property>
+       </widget>
+      </item>
+      <item row="6" column="0">
+       <widget class="QLabel" name="lblDomenicaChiusura">
+        <property name="text">
+         <string>Domenica:</string>
+        </property>
+       </widget>
+      </item>
+      <item row="6" column="1">
+       <widget class="QTimeEdit" name="timeEditDomenicaChiusura">
+        <property name="displayFormat">
+         <string>HH:mm</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item>
+    <widget class="QPushButton" name="btnInviaNuoviOrari">
+     <property name="text">
+      <string>INVIA NUOVI ORARI</string>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <spacer name="verticalSpacer">
+     <property name="orientation">
+      <enum>Qt::Vertical</enum>
+     </property>
+     <property name="sizeHint" stdset="0">
+      <size>
+       <width>20</width>
+       <height>40</height>
+      </size>
+     </property>
+    </spacer>
+   </item>
+   <item>
+    <widget class="QDialogButtonBox" name="buttonBox">
+     <property name="orientation">
+      <enum>Qt::Horizontal</enum>
+     </property>
+     <property name="standardButtons">
+      <set>QDialogButtonBox::Cancel|QDialogButtonBox::Ok</set>
+     </property>
+     <property name="centerButtons">
+      <bool>true</bool>
+     </property>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <resources/>
+ <connections>
+  <connection>
+   <sender>buttonBox</sender>
+   <signal>accepted()</signal>
+   <receiver>Dialog</receiver>
+   <slot>accept()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>248</x>
+     <y>389</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>157</x>
+     <y>264</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>buttonBox</sender>
+   <signal>rejected()</signal>
+   <receiver>Dialog</receiver>
+   <slot>reject()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>316</x>
+     <y>389</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>286</x>
+     <y>264</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+</ui>

@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>Dialog</class>
+ <widget class="QDialog" name="Dialog">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>450</width>
+    <height>350</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Torneo Burraco</string>
+  </property>
+  <layout class="QVBoxLayout" name="verticalLayout_Main">
+   <item>
+    <widget class="QLabel" name="lblTitoloTorneoBurraco">
+     <property name="font">
+      <font>
+       <pointsize>14</pointsize>
+       <weight>75</weight>
+       <bold>true</bold>
+      </font>
+     </property>
+     <property name="text">
+      <string>Torneo Burraco</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QWidget" name="contentContainer" native="true">
+     <layout class="QHBoxLayout" name="horizontalLayout_Content">
+      <item>
+       <widget class="QListWidget" name="lstSquadre">
+        <item>
+         <property name="text">
+          <string>Squadra 1</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Squadra 2</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Squadra 3</string>
+         </property>
+        </item>
+       </widget>
+      </item>
+      <item>
+       <widget class="QWidget" name="rightButtonsContainer" native="true">
+        <layout class="QVBoxLayout" name="verticalLayout_RightButtons">
+         <item>
+          <widget class="QPushButton" name="btnNuovaSquadra">
+           <property name="text">
+            <string>NUOVA SQUADRA</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QPushButton" name="btnEliminaSquadra">
+           <property name="text">
+            <string>ELIMINA SQUADRA</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QPushButton" name="btnApri">
+           <property name="text">
+            <string>APRI</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <spacer name="verticalSpacer_Buttons">
+           <property name="orientation">
+            <enum>Qt::Vertical</enum>
+           </property>
+           <property name="sizeHint" stdset="0">
+            <size>
+             <width>20</width>
+             <height>40</height>
+            </size>
+           </property>
+          </spacer>
+         </item>
+        </layout>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item>
+    <widget class="QLineEdit" name="txtInputSquadra">
+     <property name="placeholderText">
+      <string>Inserisci nome squadra...</string>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QDialogButtonBox" name="buttonBox">
+     <property name="orientation">
+      <enum>Qt::Horizontal</enum>
+     </property>
+     <property name="standardButtons">
+      <set>QDialogButtonBox::Cancel|QDialogButtonBox::Ok</set>
+     </property>
+     <property name="centerButtons">
+      <bool>true</bool>
+     </property>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <resources/>
+ <connections>
+  <connection>
+   <sender>buttonBox</sender>
+   <signal>accepted()</signal>
+   <receiver>Dialog</receiver>
+   <slot>accept()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>248</x>
+     <y>339</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>157</x>
+     <y>224</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>buttonBox</sender>
+   <signal>rejected()</signal>
+   <receiver>Dialog</receiver>
+   <slot>reject()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>316</x>
+     <y>339</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>286</x>
+     <y>224</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+</ui>

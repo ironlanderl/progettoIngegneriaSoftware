@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>Dialog</class>
+ <widget class="QDialog" name="Dialog">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>600</width>
+    <height>450</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Amministratore</string>
+  </property>
+  <layout class="QVBoxLayout" name="verticalLayout_Main">
+   <item>
+    <widget class="QLabel" name="lblTitoloAmministratore">
+     <property name="font">
+      <font>
+       <pointsize>14</pointsize>
+       <weight>75</weight>
+       <bold>true</bold>
+      </font>
+     </property>
+     <property name="text">
+      <string>Amministratore</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QWidget" name="contentContainer" native="true">
+     <layout class="QHBoxLayout" name="horizontalLayout_Content">
+      <item>
+       <widget class="QWidget" name="leftAdminControls" native="true">
+        <layout class="QVBoxLayout" name="verticalLayout_AdminControls">
+         <item>
+          <widget class="QWidget" name="addRemoveAdminContainer" native="true">
+           <layout class="QHBoxLayout" name="horizontalLayout_AddRemoveAdmin">
+            <item>
+             <widget class="QWidget" name="addAdminContainer" native="true">
+              <layout class="QVBoxLayout" name="verticalLayout_AddAdmin">
+               <item>
+                <widget class="QPushButton" name="btnAggiungiAmministratore">
+                 <property name="text">
+                  <string>AGGIUNGI AMMINISTRATORE</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QComboBox" name="cmbUtentiNonAdmin">
+                 <property name="placeholderText">
+                  <string>Seleziona Utente</string>
+                 </property>
+                </widget>
+               </item>
+              </layout>
+             </widget>
+            </item>
+            <item>
+             <widget class="QPushButton" name="btnEliminaAmministratore">
+              <property name="text">
+               <string>ELIMINA AMMINISTRATORE</string>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </widget>
+         </item>
+         <item>
+          <widget class="QListWidget" name="lstAmministratori">
+           <item>
+            <property name="text">
+             <string>Amministratore 1</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>Amministratore 2</string>
+            </property>
+           </item>
+          </widget>
+         </item>
+         <item>
+          <widget class="QPushButton" name="btnModificaServizi">
+           <property name="text">
+            <string>MODIFICA SERVIZI</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QPushButton" name="btnModificaOrari">
+           <property name="text">
+            <string>MODIFICA ORARI</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </widget>
+      </item>
+      <item>
+       <widget class="Line" name="lineVerticalSeparator">
+        <property name="orientation">
+         <enum>Qt::Vertical</enum>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QWidget" name="rightStatsFeedback" native="true">
+        <layout class="QVBoxLayout" name="verticalLayout_StatsFeedback">
+         <item>
+          <widget class="QLabel" name="lblGraficoStatistiche">
+           <property name="text">
+            <string>Grafico delle statistiche di utilizzo
+degli ultimi 14 giorni (placeholder)</string>
+           </property>
+           <property name="alignment">
+            <set>Qt::AlignCenter</set>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <spacer name="verticalSpacer_Graph">
+           <property name="orientation">
+            <enum>Qt::Vertical</enum>
+           </property>
+           <property name="sizeType">
+            <enum>QSizePolicy::Fixed</enum>
+           </property>
+           <property name="sizeHint" stdset="0">
+            <size>
+             <width>20</width>
+             <height>150</height>
+            </size>
+           </property>
+          </spacer>
+         </item>
+         <item>
+          <widget class="QPushButton" name="btnPrenotazioniEffettuate">
+           <property name="text">
+            <string>PRENOTAZIONI EFFETTUATE</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QPushButton" name="btnVisualizzaFeedback">
+           <property name="text">
+            <string>VISUALIZZA FEEDBACK</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item>
+    <widget class="QDialogButtonBox" name="buttonBox">
+     <property name="orientation">
+      <enum>Qt::Horizontal</enum>
+     </property>
+     <property name="standardButtons">
+      <set>QDialogButtonBox::Cancel|QDialogButtonBox::Ok</set>
+     </property>
+     <property name="centerButtons">
+      <bool>true</bool>
+     </property>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <resources/>
+ <connections>
+  <connection>
+   <sender>buttonBox</sender>
+   <signal>accepted()</signal>
+   <receiver>Dialog</receiver>
+   <slot>accept()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>248</x>
+     <y>439</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>157</x>
+     <y>304</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>buttonBox</sender>
+   <signal>rejected()</signal>
+   <receiver>Dialog</receiver>
+   <slot>reject()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>316</x>
+     <y>439</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>286</x>
+     <y>304</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+</ui>
