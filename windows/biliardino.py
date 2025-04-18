@@ -16,20 +16,36 @@ class PrenotazioneBiliardinoForm(QtWidgets.QDialog):
         self.utente = utente
 
         # Popola la lista dei tavoli a runtime
-        for nome_tavolo in tavoli_disponibili:
-            self.lstTavoli.addItem(str(nome_tavolo))
+        for tavolo in tavoli_disponibili:
+            self.lstTavoli.addItem(str(tavolo))
 
-        # Esempio: Connetti un'azione quando si preme "Accetta" per leggere i valori
+        # Connetti un'azione quando si preme "Accetta" per leggere i valori
         self.buttonBox.accepted.connect(self.on_accept)
 
     def on_accept(self):
         if not self.lstTavoli.currentItem():
             return
         tavolo_selezionato = self.tavoli_disponibili[self.lstTavoli.currentRow()]
-        durata = self.tmeDurata.time().toPyTime()
-        durata = self.tmeDurata.time().toPyTime()
-        durata_delta = datetime.timedelta(hours=durata.hour, minutes=durata.minute, seconds=durata.second, microseconds=durata.microsecond)
+        
+        # Calcola la durata come timedelta dalla QTimeEdit (widget "tmeDurata")
+        durata_time = self.tmeDurata.time().toPyTime()
+        durata_delta = datetime.timedelta(
+            hours=durata_time.hour, 
+            minutes=durata_time.minute, 
+            seconds=durata_time.second
+        )
+        
+        # Ottieni la data e ora della prenotazione dal QDateTimeEdit (widget "dateTimeEditData")
         data_prenotazione = self.dteDataPrenotazione.date().toPyDate()
-        data_ora_prenotazione = datetime.datetime.combine(data_prenotazione, durata)
-        self.gestore_prenotazioni.aggiungi_prenotazione(tavolo_selezionato, data_ora_prenotazione, durata_delta, self.utente.username)
+        ora_prenotazione = self.tmeDurata.time().toPyTime()
+        data_ora_prenotazione = datetime.datetime.combine(data_prenotazione, datetime.datetime.min.time())
+        data_ora_prenotazione = data_ora_prenotazione.replace(hour=ora_prenotazione.hour, minute=ora_prenotazione.minute)
+
+        # Aggiungi la prenotazione tramite il gestore prenotazioni
+        try:
+            self.gestore_prenotazioni.aggiungi_prenotazione(tavolo_selezionato, data_ora_prenotazione, durata_delta, self.utente.username)
+        except Exception as e:
+            QtWidgets.QMessageBox.warning(self, "Errore", str(e))
+            return
+        
         self.accept()

@@ -11,6 +11,9 @@ from Utenti.Utente import Utente
 
 from Servizi.CampoBocce import CampoBocce
 from Servizi.TavoloBiliardino import TavoloBiliardino
+from Servizi.SalaBiliardo import SalaBiliardo
+from Servizi.Servizio import Servizio
+from Servizi.Prenotazione import Prenotazione
 
 from Gestori.gestione_utenti import GestioneUtenti
 from Gestori.gestione_servizi import GestioneServizi
@@ -29,6 +32,7 @@ class Ui(QtWidgets.QMainWindow):
         self.login_dialog = None # Instance of LoginRegistrazioneForm
         self.campo_bocce_form = None
         self.biliardino_form = None
+        self.sala_biliardo_form = None
 
         self.aggiorna_elementi()
 
@@ -88,13 +92,13 @@ class Ui(QtWidgets.QMainWindow):
 
     def apri_campi_boccie(self):
         if self.campo_bocce_form is None:
-            self.campo_bocce_form = CampoBocceForm(self.gestore_servizi.get_servizi_by_tipe(CampoBocce), self.gestore_prenotazioni, self.utente_loggato)
+            self.campo_bocce_form = CampoBocceForm(self.gestore_servizi.get_servizi_by_type(CampoBocce), self.gestore_prenotazioni, self.utente_loggato)
             self.campo_bocce_form.exec()
             self.campo_bocce_form = None
 
     def apri_biliardino(self):
         if self.biliardino_form is None:
-            self.biliardino_form = PrenotazioneBiliardinoForm(self.gestore_servizi.get_servizi_by_tipe(TavoloBiliardino), self.gestore_prenotazioni, self.utente_loggato)
+            self.biliardino_form = PrenotazioneBiliardinoForm(self.gestore_servizi.get_servizi_by_type(TavoloBiliardino), self.gestore_prenotazioni, self.utente_loggato)
             self.biliardino_form.exec()
             self.biliardino_form = None
 
@@ -102,7 +106,10 @@ class Ui(QtWidgets.QMainWindow):
         print("Bottone 'Torneo Burraco' cliccato!")
 
     def apri_sala_biliardo(self):
-        print("Bottone 'Sala da Biliardo' cliccato!")
+        if self.sala_biliardo_form is None:
+            self.sala_biliardo_form = PrenotazioneBiliardinoForm(self.gestore_servizi.get_servizi_by_type(SalaBiliardo), self.gestore_prenotazioni, self.utente_loggato)
+            self.sala_biliardo_form.exec()
+            self.sala_biliardo_form = None
 
     def apri_feedback(self):
         print("Bottone 'Feedback' cliccato!")

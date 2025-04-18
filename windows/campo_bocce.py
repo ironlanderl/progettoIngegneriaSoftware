@@ -34,7 +34,11 @@ class CampoBocceForm(QtWidgets.QDialog):
         data_prenotazione = self.dteDataPrenotazione.date().toPyDate()
         ora_prenotazione = self.tmeDurata.time().toPyTime()
         data_e_ora_prenotazione = datetime.datetime(data_prenotazione.year, data_prenotazione.month, data_prenotazione.day, ora_prenotazione.hour, ora_prenotazione.minute, ora_prenotazione.second)
-        prenotazione = self.gestore_prenotazioni.aggiungi_prenotazione(campo_selezionato, data_e_ora_prenotazione ,durata_delta, self.utente.username)
+        try:
+            self.gestore_prenotazioni.aggiungi_prenotazione(campo_selezionato, data_e_ora_prenotazione ,durata_delta, self.utente.username)
+        except Exception as e:
+            QtWidgets.QMessageBox.warning(self, "Errore", str(e))
+            return
         self.accept()
 
 
