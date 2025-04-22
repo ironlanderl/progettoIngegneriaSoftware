@@ -5,8 +5,8 @@ class GestioneEventi:
     def __init__(self):
         self._eventi: list[Torneo] = []
 
-    def aggiungi_evento(self, data: str, numero_partecipanti: int, tipo: str):
-        self._eventi.append(Torneo(data, numero_partecipanti, tipo))
+    def aggiungi_evento(self, data: str):
+        self._eventi.append(Torneo(data))
 
     def rimuovi_evento(self, data: str):
         self._eventi.remove(self.get_evento(data))
