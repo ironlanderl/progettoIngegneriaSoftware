@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>450</width>
-    <height>350</height>
+    <height>400</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -19,7 +19,6 @@
      <property name="font">
       <font>
        <pointsize>14</pointsize>
-       <weight>75</weight>
        <bold>true</bold>
       </font>
      </property>
@@ -27,7 +26,7 @@
       <string>Torneo Burraco</string>
      </property>
      <property name="alignment">
-      <set>Qt::AlignCenter</set>
+      <set>Qt::AlignmentFlag::AlignCenter</set>
      </property>
     </widget>
    </item>
@@ -36,21 +35,6 @@
      <layout class="QHBoxLayout" name="horizontalLayout_Content">
       <item>
        <widget class="QListWidget" name="lstSquadre">
-        <item>
-         <property name="text">
-          <string>Squadra 1</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>Squadra 2</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>Squadra 3</string>
-         </property>
-        </item>
        </widget>
       </item>
       <item>
@@ -78,9 +62,23 @@
           </widget>
          </item>
          <item>
+          <widget class="QDateTimeEdit" name="dateTimeEditTorneo">
+           <property name="date">
+            <date>
+             <year>2024</year>
+             <month>1</month>
+             <day>1</day>
+            </date>
+           </property>
+           <property name="displayFormat">
+            <string>dd/MM/yy HH:mm</string>
+           </property>
+          </widget>
+         </item>
+         <item>
           <spacer name="verticalSpacer_Buttons">
            <property name="orientation">
-            <enum>Qt::Vertical</enum>
+            <enum>Qt::Orientation::Vertical</enum>
            </property>
            <property name="sizeHint" stdset="0">
             <size>
@@ -106,10 +104,10 @@
    <item>
     <widget class="QDialogButtonBox" name="buttonBox">
      <property name="orientation">
-      <enum>Qt::Horizontal</enum>
+      <enum>Qt::Orientation::Horizontal</enum>
      </property>
      <property name="standardButtons">
-      <set>QDialogButtonBox::Cancel|QDialogButtonBox::Ok</set>
+      <set>QDialogButtonBox::StandardButton::Cancel|QDialogButtonBox::StandardButton::Ok</set>
      </property>
      <property name="centerButtons">
       <bool>true</bool>
@@ -128,11 +126,11 @@
    <hints>
     <hint type="sourcelabel">
      <x>248</x>
-     <y>339</y>
+     <y>389</y>
     </hint>
     <hint type="destinationlabel">
      <x>157</x>
-     <y>224</y>
+     <y>274</y>
     </hint>
    </hints>
   </connection>
@@ -144,11 +142,11 @@
    <hints>
     <hint type="sourcelabel">
      <x>316</x>
-     <y>339</y>
+     <y>389</y>
     </hint>
     <hint type="destinationlabel">
      <x>286</x>
-     <y>224</y>
+     <y>274</y>
     </hint>
    </hints>
   </connection>

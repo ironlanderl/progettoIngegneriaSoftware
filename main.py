@@ -6,6 +6,7 @@ import sys
 from windows.login import LoginRegistrazioneForm
 from windows.campo_bocce import CampoBocceForm
 from windows.biliardino import PrenotazioneBiliardinoForm
+from windows.torneo_burraco import TorneoBurracoForm
 from windows.feedback import FeedbackForm
 
 from Utenti.Utente import Utente
@@ -20,15 +21,17 @@ from Servizi.Prenotazione import Prenotazione
 from Gestori.gestione_utenti import GestioneUtenti
 from Gestori.gestione_servizi import GestioneServizi
 from Gestori.gestione_prenotazioni import GestionePrenotazioni
+from Gestori.gestione_eventi import GestioneEventi
 
 class Ui(QtWidgets.QMainWindow):
-    def __init__(self, gestore_utenti: GestioneUtenti, gestore_servizi: GestioneServizi, gestore_prenotazioni: GestionePrenotazioni):
+    def __init__(self, gestore_utenti: GestioneUtenti, gestore_servizi: GestioneServizi, gestore_prenotazioni: GestionePrenotazioni, gestore_eventi: GestioneEventi):
         super(Ui, self).__init__()
         uic.loadUi('./windows/main.ui', self)
 
         self.gestore_utenti = gestore_utenti
         self.gestore_servizi = gestore_servizi
         self.gestore_prenotazioni = gestore_prenotazioni
+        self.gestore_eventi = gestore_eventi
 
         # TODO!: Rimettere utente loggato a None. Messo forzatamente ad admin per testare
         self.utente_loggato = self.gestore_utenti.get_utente("admin")
@@ -36,6 +39,7 @@ class Ui(QtWidgets.QMainWindow):
         self.campo_bocce_form = None
         self.biliardino_form = None
         self.sala_biliardo_form = None
+        self.torneo_burraco_form = None
         self.feedback_form = None
 
         self.aggiorna_elementi()
@@ -107,7 +111,10 @@ class Ui(QtWidgets.QMainWindow):
             self.biliardino_form = None
 
     def apri_torneo_burraco(self):
-        print("Bottone 'Torneo Burraco' cliccato!")
+        if self.torneo_burraco_form is None:
+            self.torneo_burraco_form = TorneoBurracoForm(self.gestore_eventi, self.gestore_utenti)
+            self.torneo_burraco_form.exec()
+            self.torneo_burraco_form = None
 
     def apri_sala_biliardo(self):
         if self.sala_biliardo_form is None:
@@ -131,8 +138,9 @@ if __name__ == "__main__":
     gestore_utenti = GestioneUtenti()
     gestore_servizi = GestioneServizi()
     gestore_prenotazioni = GestionePrenotazioni()
+    gestore_eventi = GestioneEventi()
 
     app = QtWidgets.QApplication(sys.argv)
-    window = Ui(gestore_utenti, gestore_servizi, gestore_prenotazioni)
+    window = Ui(gestore_utenti, gestore_servizi, gestore_prenotazioni, gestore_eventi)
     window.show()
     app.exec()
