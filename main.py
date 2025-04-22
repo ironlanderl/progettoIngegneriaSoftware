@@ -6,8 +6,10 @@ import sys
 from windows.login import LoginRegistrazioneForm
 from windows.campo_bocce import CampoBocceForm
 from windows.biliardino import PrenotazioneBiliardinoForm
+from windows.feedback import FeedbackForm
 
 from Utenti.Utente import Utente
+from Utenti.Feedback import Feedback
 
 from Servizi.CampoBocce import CampoBocce
 from Servizi.TavoloBiliardino import TavoloBiliardino
@@ -28,11 +30,13 @@ class Ui(QtWidgets.QMainWindow):
         self.gestore_servizi = gestore_servizi
         self.gestore_prenotazioni = gestore_prenotazioni
 
-        self.utente_loggato = None # Inizialmente nessun utente loggato
-        self.login_dialog = None # Instance of LoginRegistrazioneForm
+        # TODO!: Rimettere utente loggato a None. Messo forzatamente ad admin per testare
+        self.utente_loggato = self.gestore_utenti.get_utente("admin")
+        self.login_dialog = None
         self.campo_bocce_form = None
         self.biliardino_form = None
         self.sala_biliardo_form = None
+        self.feedback_form = None
 
         self.aggiorna_elementi()
 
@@ -112,7 +116,12 @@ class Ui(QtWidgets.QMainWindow):
             self.sala_biliardo_form = None
 
     def apri_feedback(self):
-        print("Bottone 'Feedback' cliccato!")
+        if self.feedback_form is None:
+            self.feedback_form = FeedbackForm(self.utente_loggato)
+            self.feedback_form.exec()
+            self.gestore_utenti.salva_su_file()
+            print("Feedback inviato con successo.")
+            self.feedback_form = None
 
     def apri_amministratore(self):
         print("Bottone 'Amministratore' cliccato!")

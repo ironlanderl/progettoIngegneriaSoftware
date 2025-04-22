@@ -38,10 +38,10 @@ class GestioneUtenti:
                 return True, utente
         return False, None
 
-    def salva_su_file(self, nome_file: str):
+    def salva_su_file(self, nome_file: str = "utenti.pickle"):
         with open(nome_file, "wb") as f:
             pickle.dump(self._utenti, f)
 
-    def leggi_da_file(self, nome_file: str):
+    def leggi_da_file(self, nome_file: str = "utenti.pickle"):
         with open(nome_file, "rb") as f:
             self._utenti = pickle.load(f)

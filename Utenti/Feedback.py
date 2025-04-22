@@ -1,33 +1,33 @@
 from datetime import datetime
 
 class Feedback:
-    def __init__(self, contenuto: str, data: datetime):
+    def __init__(self, contenuto: str, data: str):
         self._contenuto: str = ""
-        self._data: datetime.datetime = datetime.datetime(1970,1,1,0,0)
+        self._data: datetime = None
+        self.contenuto: str = contenuto
+        self.data: str = data
 
     @property
     def contenuto(self):
-        """The contenuto property."""
         return self._contenuto
 
     @contenuto.setter
-    def contenuto(self, value):
+    def contenuto(self, value: str):
         if value == "":
             raise ValueError("Il contenuto del feedback non può essere vuoto")
         self._contenuto = value
 
     @property
     def data(self):
-        """The data property."""
         return self._data
 
     @data.setter
-    def data(self, value):
-        # Primo controllo: la data deve essere nel formato specificato
+    def data(self, value: str):
         try:
-            tmp: datetime = datetime.strptime(value, "%Y-%m-%d %H:%M:%S")
-        except:
+            parsed_date: datetime = datetime.strptime(value, "%Y-%m-%d %H:%M:%S")
+        except ValueError:
             raise ValueError("La data è in un formato errato")
+        self._data = parsed_date
 
-        self._data = tmp
-
+    def __str__(self):
+        return f"Feedback(contenuto='{self.contenuto}', data='{self.data.strftime('%Y-%m-%d %H:%M:%S')}')"

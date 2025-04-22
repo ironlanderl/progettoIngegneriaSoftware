@@ -1,8 +1,12 @@
 from typing import override
-
+from Utenti.Feedback import Feedback
 
 class Utente:
+    
+    
+    
     def __init__(self, nome: str, cognome: str, username: str, password: str):
+        self._feedback: list[Feedback] = []
         self._nome: str = ""
         self._cognome: str = ""
         self._password: str = ""
@@ -66,6 +70,15 @@ class Utente:
     @amministratore.setter
     def amministratore(self, amministratore: bool):
         self._amministratore = amministratore
+
+    @property
+    def feedback(self):
+        return self._feedback
+    
+    def aggiungi_feedback(self, feedbackInput: Feedback):
+        if not isinstance(feedbackInput, Feedback):
+            raise TypeError("Il feedback deve essere un'istanza della classe Feedback")
+        self._feedback.append(feedbackInput)
 
     @override
     def __str__(self):
