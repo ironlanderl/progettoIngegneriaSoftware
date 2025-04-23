@@ -6,6 +6,8 @@ from Gestori.gestione_eventi import GestioneEventi
 from Utenti.Utente import Utente
 from Gestori.gestione_utenti import GestioneUtenti
 
+from windows.gestione_membri_squadra import GestioneMembriSquadraForm
+
 
 class TorneoBurracoForm(QtWidgets.QDialog):
     def __init__(self, gestore_eventi: GestioneEventi, gestore_utenti: GestioneUtenti):
@@ -15,10 +17,11 @@ class TorneoBurracoForm(QtWidgets.QDialog):
         self.gestore_eventi = gestore_eventi
         self.gestore_utenti = gestore_utenti
         self.torneo = None
+        self.gestione_membri_form = None
 
         self.btnNuovaSquadra.clicked.connect(self.aggiungi_squadra)
         self.btnEliminaSquadra.clicked.connect(self.elimina_squadra)
-        self.btnApri.clicked.connect(self.unimpl)
+        self.btnApri.clicked.connect(self.aggiungi_membri)
         self.buttonBox.accepted.connect(self.accept)
         self.buttonBox.rejected.connect(self.reject)
 
@@ -70,5 +73,13 @@ class TorneoBurracoForm(QtWidgets.QDialog):
             print("Nessun torneo trovato per la data e l'ora selezionate.")
             self.torneo = None
 
-    def unimpl(self):
-        raise NotImplementedError("Funzione non implementata")
+    def aggiungi_membri(self):
+        selected_item = self.lstSquadre.currentItem()
+        if selected_item:
+            nome_squadra = selected_item.text()
+            if not self.gestione_membri_form:
+                self.gestione_membri_form = GestioneMembriSquadraForm(self.torneo, nome_squadra)
+            self.gestione_membri_form.exec()
+            self.gestore_eventi.salva_su_file()
+        else:
+            QtWidgets.QMessageBox.warning(self, "Errore", "Seleziona una squadra per gestire i membri.")
