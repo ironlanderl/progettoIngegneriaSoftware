@@ -8,6 +8,7 @@ from windows.campo_bocce import CampoBocceForm
 from windows.biliardino import PrenotazioneBiliardinoForm
 from windows.torneo_burraco import TorneoBurracoForm
 from windows.feedback import FeedbackForm
+from windows.amministratore import AmministratoreForm
 
 from Utenti.Utente import Utente
 from Utenti.Feedback import Feedback
@@ -41,6 +42,7 @@ class Ui(QtWidgets.QMainWindow):
         self.sala_biliardo_form = None
         self.torneo_burraco_form = None
         self.feedback_form = None
+        self.amministratore_form = None
 
         self.aggiorna_elementi()
 
@@ -127,11 +129,15 @@ class Ui(QtWidgets.QMainWindow):
             self.feedback_form = FeedbackForm(self.utente_loggato)
             self.feedback_form.exec()
             self.gestore_utenti.salva_su_file()
-            print("Feedback inviato con successo.")
             self.feedback_form = None
 
     def apri_amministratore(self):
-        print("Bottone 'Amministratore' cliccato!")
+        if self.amministratore_form is None:
+            self.amministratore_form = AmministratoreForm(self.gestore_utenti, self.gestore_prenotazioni)
+            self.amministratore_form.exec()
+            self.amministratore_form = None
+            self.gestore_utenti.salva_su_file()
+            self.aggiorna_elementi()
 
 if __name__ == "__main__":
     # Inizializzazione dei gestori
