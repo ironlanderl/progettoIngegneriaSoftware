@@ -31,6 +31,9 @@ class GestioneUtenti:
             if utente.username == username:
                 return utente
         raise ValueError("L'utente cercato non esiste")
+    
+    def get_utenti(self) -> list[Utente]:
+        return self._utenti
 
     def check_credenziali(self, username: str, password: str) -> tuple[bool, Utente | None]:
         for utente in self._utenti:

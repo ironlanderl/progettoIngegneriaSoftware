@@ -6,6 +6,8 @@ from Gestori.gestione_utenti import GestioneUtenti
 from Utenti.Statistiche import Statistiche
 from Gestori.gestione_prenotazioni import GestionePrenotazioni
 
+from windows.visualizza_feedback import VisualizzaFeedbackForm
+
 class AmministratoreForm(QtWidgets.QDialog):
     def __init__(self, gestore_utenti: GestioneUtenti, gestore_prenotazioni: GestionePrenotazioni):
         super().__init__()
@@ -19,6 +21,10 @@ class AmministratoreForm(QtWidgets.QDialog):
 
         self.btnAggiungiAmministratore.clicked.connect(self.aggiungi_amministratore)
         self.btnEliminaAmministratore.clicked.connect(self.rimuovi_amministratore)
+
+        self.btnVisualizzaFeedback.clicked.connect(self.visualizza_feedback)
+
+        self.visualizzaFeedbackForm = None
 
     def replace_label_with_graph(self):
         # Trova la label nel layout
@@ -76,3 +82,9 @@ class AmministratoreForm(QtWidgets.QDialog):
             QtWidgets.QMessageBox.information(self, "Rimuovi Admin", f"L'utente {username} è stato rimosso dagli amministratori.")
         else:
             QtWidgets.QMessageBox.warning(self, "Rimuovi Admin", "Seleziona un utente da rimuovere dagli amministratori.")
+
+    def visualizza_feedback(self):
+        if self.visualizzaFeedbackForm is None:
+            self.visualizzaFeedbackForm = VisualizzaFeedbackForm(self.gestore_utenti)
+            self.visualizzaFeedbackForm.exec()
+            self.visualizzaFeedbackForm = None

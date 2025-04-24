@@ -80,6 +80,14 @@ class Utente:
             raise TypeError("Il feedback deve essere un'istanza della classe Feedback")
         self._feedback.append(feedbackInput)
 
+    def rimuovi_feedback(self, feedbackInput: Feedback):
+        if not isinstance(feedbackInput, Feedback):
+            raise TypeError("Il feedback deve essere un'istanza della classe Feedback")
+        if feedbackInput in self._feedback:
+            self._feedback.remove(feedbackInput)
+        else:
+            raise ValueError("Il feedback non è presente nella lista")
+
     @override
     def __str__(self):
         return self.username

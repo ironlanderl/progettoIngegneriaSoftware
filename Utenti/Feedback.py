@@ -30,4 +30,4 @@ class Feedback:
         self._data = parsed_date
 
     def __str__(self):
-        return f"Feedback(contenuto='{self.contenuto}', data='{self.data.strftime('%Y-%m-%d %H:%M:%S')}')"
+        return self.contenuto
