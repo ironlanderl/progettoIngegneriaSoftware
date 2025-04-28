@@ -65,4 +65,6 @@ class Prenotazione:
 
     @utente_prenotazione.setter
     def utente_prenotazione(self, value: str):
+        if not isinstance(value, str) or not value:
+            raise ValueError("L'utente di prenotazione deve essere una stringa non vuota.")
         self._utente_prenotazione = value

@@ -8,15 +8,6 @@ class GestioneEventi:
         self._eventi: list[Torneo] = []
         if os.path.exists("eventi.pickle"):
             self.leggi_da_file()
-        else:
-            # Debug: Creazione di un evento di esempio
-            self.aggiungi_evento("2024-01-01 00:00:00")
-            self.aggiungi_partecipante("2024-01-01 00:00:00", "Squadra A", "Utente1")
-            self.aggiungi_partecipante("2024-01-01 00:00:00", "Squadra A", "Utente2")
-            self.aggiungi_partecipante("2024-01-01 00:00:00", "Squadra B", "Utente3")
-            self.aggiungi_partecipante("2024-01-01 00:00:00", "Squadra B", "Utente4")
-            self.aggiungi_partecipante("2024-01-01 00:00:00", "Squadra C", "Utente5")
-            self.aggiungi_partecipante("2024-01-01 00:00:00", "Squadra C", "Utente6")
 
     def aggiungi_evento(self, data: str):
         # Convertire la stringa in un oggetto datetime

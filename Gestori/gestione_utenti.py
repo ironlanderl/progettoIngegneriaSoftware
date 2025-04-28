@@ -17,6 +17,8 @@ class GestioneUtenti:
 
 
     def aggiungi_utente(self, nome: str, cognome: str, username: str, password: str) -> Utente:
+        if any(utente.username == username for utente in self._utenti):
+            raise ValueError("Username già esistente")
         utente: Utente = Utente(nome, cognome, username, password)
         self._utenti.append(utente)
         self.salva_su_file("utenti.pickle")

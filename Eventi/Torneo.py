@@ -15,12 +15,10 @@ class Torneo:
     def data(self, data: datetime):
         if not isinstance(data, datetime):
             raise TypeError("La data deve essere un oggetto datetime")
-
-        # CHANGEME: Riattivare il controllo. Disabilitato per testing più semplice
-        """
+        
         if datetime.now() > data:
             raise ValueError("Non è possibile pianificare un torneo nel passato")
-        """
+        
 
         self._data = data
 

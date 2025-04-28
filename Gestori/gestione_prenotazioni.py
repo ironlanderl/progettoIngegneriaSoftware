@@ -10,22 +10,22 @@ class GestionePrenotazioni:
     def __init__(self):
         self._prenotazioni: list[Prenotazione] = []
         self._orario_apertura = {
-            "Lunedi": "09:00",
-            "Martedi": "09:00",
-            "Mercoledi": "09:00",
-            "Giovedi": "09:00",
-            "Venerdi": "09:00",
-            "Sabato": "09:00",
-            "Domenica": "09:00"
+            "Monday": "09:00",
+            "Tuesday": "09:00",
+            "Wednesday": "09:00",
+            "Thursday": "09:00",
+            "Friday": "09:00",
+            "Saturday": "09:00",
+            "Sunday": "09:00"
         }
         self._orario_chiusura = {
-            "Lunedi": "23:00",
-            "Martedi": "23:00",
-            "Mercoledi": "23:00",
-            "Giovedi": "23:00",
-            "Venerdi": "23:00",
-            "Sabato": "23:00",
-            "Domenica": "23:00"
+            "Monday": "23:00",
+            "Tuesday": "23:00",
+            "Wednesday": "23:00",
+            "Thursday": "23:00",
+            "Friday": "23:00",
+            "Saturday": "23:00",
+            "Sunday": "23:00"
         }
         if os.path.exists("prenotazioni.pickle"):
             self.leggi_da_file("prenotazioni.pickle")
