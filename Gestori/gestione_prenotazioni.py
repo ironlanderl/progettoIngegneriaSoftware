@@ -4,12 +4,35 @@ from Servizi.Servizio import Servizio
 from Utenti.Utente import Utente
 import datetime
 import os
+import json
 
 class GestionePrenotazioni:
     def __init__(self):
         self._prenotazioni: list[Prenotazione] = []
+        self._orario_apertura = {
+            "Lunedi": "09:00",
+            "Martedi": "09:00",
+            "Mercoledi": "09:00",
+            "Giovedi": "09:00",
+            "Venerdi": "09:00",
+            "Sabato": "09:00",
+            "Domenica": "09:00"
+        }
+        self._orario_chiusura = {
+            "Lunedi": "23:00",
+            "Martedi": "23:00",
+            "Mercoledi": "23:00",
+            "Giovedi": "23:00",
+            "Venerdi": "23:00",
+            "Sabato": "23:00",
+            "Domenica": "23:00"
+        }
         if os.path.exists("prenotazioni.pickle"):
             self.leggi_da_file("prenotazioni.pickle")
+        if os.path.exists("orari.json"):
+            self.leggi_orari_da_file("orari.json")
+        else:
+            self.salva_orari_su_file("orari.json")
 
     def aggiungi_prenotazione(self, servizio: Servizio, data: datetime.datetime, durata: datetime.timedelta, utente_prenotazione: str):
         if self.controlla_disponibilita(servizio, data, durata):
@@ -26,6 +49,15 @@ class GestionePrenotazioni:
                 return prenotazione
 
     def controlla_disponibilita(self, servizio: Servizio, data: datetime.datetime, durata: datetime.timedelta) -> bool:
+        giorno_settimana = data.strftime("%A")
+        orario_apertura_str = self.get_orario_apertura(giorno_settimana)
+        orario_chiusura_str = self.get_orario_chiusura(giorno_settimana)
+        orario_apertura = datetime.datetime.strptime(orario_apertura_str, "%H:%M").time()
+        orario_chiusura = datetime.datetime.strptime(orario_chiusura_str, "%H:%M").time()
+        data_e_ora_apertura = data.replace(hour=orario_apertura.hour, minute=orario_apertura.minute, second=0, microsecond=0)
+        data_e_ora_chiusura = data.replace(hour=orario_chiusura.hour, minute=orario_chiusura.minute, second=0, microsecond=0)
+        if data < data_e_ora_apertura or (data + durata) > data_e_ora_chiusura:
+            return False
         nuova_fine = data + durata
         for prenotazione in self._prenotazioni:
             if prenotazione.servizio == servizio:
@@ -49,3 +81,24 @@ class GestionePrenotazioni:
         with open(nome_file, 'rb') as f:
             self._prenotazioni = pickle.load(f)
 
+    def get_orario_apertura(self, giorno):
+        return self._orario_apertura[giorno]
+
+    def set_orario_apertura(self, giorno, orario_apertura):
+        self._orario_apertura[giorno] = orario_apertura
+
+    def get_orario_chiusura(self, giorno):
+        return self._orario_chiusura[giorno]
+
+    def set_orario_chiusura(self, giorno, orario_chiusura):
+        self._orario_chiusura[giorno] = orario_chiusura
+
+    def salva_orari_su_file(self, nome_file: str = "orari.json"):
+        with open(nome_file, 'w') as f:
+            json.dump({"apertura": self._orario_apertura, "chiusura": self._orario_chiusura}, f)
+    
+    def leggi_orari_da_file(self, nome_file: str = "orari.json"):
+        with open(nome_file, 'r') as f:
+            data = json.load(f)
+            self._orario_apertura = data["apertura"]
+            self._orario_chiusura = data["chiusura"]

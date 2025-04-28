@@ -9,24 +9,7 @@ from Servizi.TavoloBiliardino import TavoloBiliardino
 class GestioneServizi:
     def __init__(self):
         self._servizi: list[Servizio] = []
-        self._orario_apertura = {
-            "Lunedi": "09:00",
-            "Martedi": "09:00",
-            "Mercoledi": "09:00",
-            "Giovedi": "09:00",
-            "Venerdi": "09:00",
-            "Sabato": "09:00",
-            "Domenica": "09:00"
-        }
-        self._orario_chiusura = {
-            "Lunedi": "23:00",
-            "Martedi": "23:00",
-            "Mercoledi": "23:00",
-            "Giovedi": "23:00",
-            "Venerdi": "23:00",
-            "Sabato": "23:00",
-            "Domenica": "23:00"
-        }
+
 
         if os.path.exists("servizi.pickle"):
             self.leggi_da_file("servizi.pickle")
@@ -86,15 +69,3 @@ class GestioneServizi:
     def leggi_da_file(self, nome_file: str):
         with open(nome_file, "rb") as f:
             self._servizi = pickle.load(f)
-
-    def get_orario_apertura(self, giorno):
-        return self._orario_apertura[giorno]
-
-    def set_orario_apertura(self, giorno, orario_apertura):
-        self._orario_apertura[giorno] = orario_apertura
-
-    def get_orario_chiusura(self, giorno):
-        return self._orario_chiusura[giorno]
-
-    def set_orario_chiusura(self, giorno, orario_chiusura):
-        self._orario_chiusura[giorno] = orario_chiusura
