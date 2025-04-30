@@ -8,6 +8,7 @@ from Gestori.gestione_prenotazioni import GestionePrenotazioni
 
 from windows.visualizza_feedback import VisualizzaFeedbackForm
 from windows.gestione_orari import GestioneOrariForm
+from windows.visualizzazione_prenotazioni import VisualizzazionePrenotazioniForm
 
 class AmministratoreForm(QtWidgets.QDialog):
     def __init__(self, gestore_utenti: GestioneUtenti, gestore_prenotazioni: GestionePrenotazioni):
@@ -25,9 +26,11 @@ class AmministratoreForm(QtWidgets.QDialog):
 
         self.btnVisualizzaFeedback.clicked.connect(self.visualizza_feedback)
         self.btnModificaOrari.clicked.connect(self.modifica_orari)
+        self.btnPrenotazioniEffettuate.clicked.connect(self.visualizza_prenotazioni)
 
         self.visualizzaFeedbackForm = None
         self.modificaOrariForm = None
+        self.visualizzaPrenotazioniForm = None
 
     def replace_label_with_graph(self):
         # Trova la label nel layout
@@ -97,3 +100,9 @@ class AmministratoreForm(QtWidgets.QDialog):
             self.modificaOrariForm = GestioneOrariForm(self.gestore_prenotazioni)
             self.modificaOrariForm.exec()
             self.modificaOrariForm = None
+
+    def visualizza_prenotazioni(self):
+        if self.visualizzaPrenotazioniForm is None:
+            self.visualizzaPrenotazioniForm = VisualizzazionePrenotazioniForm(self.gestore_prenotazioni)
+            self.visualizzaPrenotazioniForm.exec()
+            self.visualizzaPrenotazioniForm = None
