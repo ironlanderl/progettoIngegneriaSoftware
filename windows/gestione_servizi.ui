@@ -1,0 +1,351 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>Dialog</class>
+ <widget class="QDialog" name="Dialog">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>700</width>
+    <height>500</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Modifica Servizi</string>
+  </property>
+  <layout class="QVBoxLayout" name="verticalLayout_Main">
+   <item>
+    <widget class="QLabel" name="lblTitoloModificaServizi">
+     <property name="font">
+      <font>
+       <pointsize>14</pointsize>
+       <weight>75</weight>
+       <bold>true</bold>
+      </font>
+     </property>
+     <property name="text">
+      <string>Modifica Servizi</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QWidget" name="contentContainer" native="true">
+     <layout class="QHBoxLayout" name="horizontalLayout_Content">
+      <item>
+       <widget class="QWidget" name="pricesContainer" native="true">
+        <layout class="QVBoxLayout" name="verticalLayout_Prices">
+         <item>
+          <widget class="QLabel" name="lblPrezziAttuali">
+           <property name="font">
+            <font>
+             <pointsize>10</pointsize>
+             <weight>75</weight>
+             <bold>true</bold>
+            </font>
+           </property>
+           <property name="text">
+            <string>Modifica Prezzi</string>
+           </property>
+           <property name="alignment">
+            <set>Qt::AlignCenter</set>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QWidget" name="biliardinoPriceContainer" native="true">
+           <layout class="QHBoxLayout" name="horizontalLayout_BiliardinoPrice">
+            <item>
+             <widget class="QLabel" name="lblPrezzoBiliardino">
+              <property name="text">
+               <string>Biliardino:</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QDoubleSpinBox" name="dsbPrezzoBiliardino">
+              <property name="decimals">
+               <number>2</number>
+              </property>
+              <property name="singleStep">
+               <double>0.100000000000000</double>
+              </property>
+              <property name="value">
+               <double>0.500000000000000</double>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QPushButton" name="btnModificaPrezzoBiliardino">
+              <property name="text">
+               <string>MODIFICA PREZZO</string>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </widget>
+         </item>
+         <item>
+          <widget class="QWidget" name="biliardoPriceContainer" native="true">
+           <layout class="QHBoxLayout" name="horizontalLayout_BiliardoPrice">
+            <item>
+             <widget class="QLabel" name="lblPrezzoBiliardo">
+              <property name="text">
+               <string>Biliardo:</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QDoubleSpinBox" name="dsbPrezzoBiliardo">
+              <property name="decimals">
+               <number>2</number>
+              </property>
+              <property name="singleStep">
+               <double>0.500000000000000</double>
+              </property>
+              <property name="value">
+               <double>2.000000000000000</double>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QPushButton" name="btnModificaPrezzoBiliardo">
+              <property name="text">
+               <string>MODIFICA PREZZO</string>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </widget>
+         </item>
+         <item>
+          <widget class="QWidget" name="boccePriceContainer" native="true">
+           <layout class="QHBoxLayout" name="horizontalLayout_BoccePrice">
+            <item>
+             <widget class="QLabel" name="lblPrezzoBocce">
+              <property name="text">
+               <string>Bocce:</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QDoubleSpinBox" name="dsbPrezzoBocce">
+              <property name="decimals">
+               <number>2</number>
+              </property>
+              <property name="singleStep">
+               <double>1.000000000000000</double>
+              </property>
+              <property name="value">
+               <double>10.000000000000000</double>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QPushButton" name="btnModificaPrezzoBocce">
+              <property name="text">
+               <string>MODIFICA PREZZO</string>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </widget>
+         </item>
+         <item>
+          <spacer name="verticalSpacer_Prices">
+           <property name="orientation">
+            <enum>Qt::Vertical</enum>
+           </property>
+           <property name="sizeHint" stdset="0">
+            <size>
+             <width>20</width>
+             <height>40</height>
+            </size>
+           </property>
+          </spacer>
+         </item>
+        </layout>
+       </widget>
+      </item>
+      <item>
+       <widget class="Line" name="lineVerticalSeparator">
+        <property name="orientation">
+         <enum>Qt::Vertical</enum>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QWidget" name="instancesContainer" native="true">
+        <layout class="QVBoxLayout" name="verticalLayout_Instances">
+         <item>
+          <widget class="QLabel" name="lblGestioneIstanze">
+           <property name="font">
+            <font>
+             <pointsize>10</pointsize>
+             <weight>75</weight>
+             <bold>true</bold>
+            </font>
+           </property>
+           <property name="text">
+            <string>Gestione Istanze Servizi</string>
+           </property>
+           <property name="alignment">
+            <set>Qt::AlignCenter</set>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QGroupBox" name="groupBoxBiliardo">
+           <property name="title">
+            <string>Tavoli Biliardo</string>
+           </property>
+           <layout class="QVBoxLayout" name="verticalLayout_BiliardoInstances">
+            <item>
+             <widget class="QListWidget" name="lstTavoliBiliardo"/>
+            </item>
+            <item>
+             <widget class="QWidget" name="biliardoButtonsContainer" native="true">
+              <layout class="QHBoxLayout" name="horizontalLayout_BiliardoButtons">
+               <item>
+                <widget class="QPushButton" name="btnAggiungiTavoloBiliardo">
+                 <property name="text">
+                  <string>AGGIUNGI TAVOLO</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QPushButton" name="btnEliminaTavoloBiliardo">
+                 <property name="text">
+                  <string>ELIMINA TAVOLO</string>
+                 </property>
+                </widget>
+               </item>
+              </layout>
+             </widget>
+            </item>
+           </layout>
+          </widget>
+         </item>
+         <item>
+          <widget class="QGroupBox" name="groupBoxBiliardino">
+           <property name="title">
+            <string>Tavoli Biliardino</string>
+           </property>
+           <layout class="QVBoxLayout" name="verticalLayout_BiliardinoInstances">
+            <item>
+             <widget class="QListWidget" name="lstTavoliBiliardino"/>
+            </item>
+            <item>
+             <widget class="QWidget" name="biliardinoButtonsContainer" native="true">
+              <layout class="QHBoxLayout" name="horizontalLayout_BiliardinoButtons">
+               <item>
+                <widget class="QPushButton" name="btnAggiungiTavoloBiliardino">
+                 <property name="text">
+                  <string>AGGIUNGI TAVOLO</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QPushButton" name="btnEliminaTavoloBiliardino">
+                 <property name="text">
+                  <string>ELIMINA TAVOLO</string>
+                 </property>
+                </widget>
+               </item>
+              </layout>
+             </widget>
+            </item>
+           </layout>
+          </widget>
+         </item>
+         <item>
+          <widget class="QGroupBox" name="groupBoxBocce">
+           <property name="title">
+            <string>Campi Bocce</string>
+           </property>
+           <layout class="QVBoxLayout" name="verticalLayout_BocceInstances">
+            <item>
+             <widget class="QListWidget" name="lstCampiBocce"/>
+            </item>
+            <item>
+             <widget class="QWidget" name="bocceButtonsContainer" native="true">
+              <layout class="QHBoxLayout" name="horizontalLayout_BocceButtons">
+               <item>
+                <widget class="QPushButton" name="btnAggiungiCampoBocce">
+                 <property name="text">
+                  <string>AGGIUNGI CAMPO</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QPushButton" name="btnEliminaCampoBocce">
+                 <property name="text">
+                  <string>ELIMINA CAMPO</string>
+                 </property>
+                </widget>
+               </item>
+              </layout>
+             </widget>
+            </item>
+           </layout>
+          </widget>
+         </item>
+        </layout>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item>
+    <widget class="QDialogButtonBox" name="buttonBox">
+     <property name="orientation">
+      <enum>Qt::Horizontal</enum>
+     </property>
+     <property name="standardButtons">
+      <set>QDialogButtonBox::Cancel|QDialogButtonBox::Ok</set>
+     </property>
+     <property name="centerButtons">
+      <bool>true</bool>
+     </property>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <resources/>
+ <connections>
+  <connection>
+   <sender>buttonBox</sender>
+   <signal>accepted()</signal>
+   <receiver>Dialog</receiver>
+   <slot>accept()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>348</x>
+     <y>489</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>349</x>
+     <y>249</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>buttonBox</sender>
+   <signal>rejected()</signal>
+   <receiver>Dialog</receiver>
+   <slot>reject()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>348</x>
+     <y>489</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>349</x>
+     <y>249</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+</ui>
