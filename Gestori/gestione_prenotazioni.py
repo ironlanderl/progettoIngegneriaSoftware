@@ -49,7 +49,8 @@ class GestionePrenotazioni:
                 return prenotazione
 
     def controlla_disponibilita(self, servizio: Servizio, data: datetime.datetime, durata: datetime.timedelta) -> bool:
-        giorno_settimana = data.strftime("%A")
+        # Converti da giorno a indice (0=Monday, 6=Sunday)
+        giorno_settimana = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"][data.weekday()]
         orario_apertura_str = self.get_orario_apertura(giorno_settimana)
         orario_chiusura_str = self.get_orario_chiusura(giorno_settimana)
         orario_apertura = datetime.datetime.strptime(orario_apertura_str, "%H:%M").time()

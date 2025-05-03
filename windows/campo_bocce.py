@@ -31,9 +31,7 @@ class CampoBocceForm(QtWidgets.QDialog):
         campo_selezionato = self.campi[self.lstCampi.currentRow()]
         durata = self.tmeDurata.time().toPyTime()
         durata_delta = datetime.timedelta(hours=durata.hour, minutes=durata.minute, seconds=durata.second, microseconds=durata.microsecond)
-        data_prenotazione = self.dteDataPrenotazione.date().toPyDate()
-        ora_prenotazione = self.tmeDurata.time().toPyTime()
-        data_e_ora_prenotazione = datetime.datetime(data_prenotazione.year, data_prenotazione.month, data_prenotazione.day, ora_prenotazione.hour, ora_prenotazione.minute, ora_prenotazione.second)
+        data_e_ora_prenotazione = self.dteDataOraPrenotazione.dateTime().toPyDateTime()
         try:
             self.gestore_prenotazioni.aggiungi_prenotazione(campo_selezionato, data_e_ora_prenotazione ,durata_delta, self.utente.username)
         except Exception as e:
@@ -48,6 +46,7 @@ class CampoBocceForm(QtWidgets.QDialog):
             print("Elementi selezionati:")
             for item in selected_items:
                 print(item.text())
+                self.calculate_total_cost()
         else:
             print("Nessun elemento selezionato.")
 
