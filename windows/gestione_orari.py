@@ -18,13 +18,23 @@ class GestioneOrariForm(QtWidgets.QDialog):
         # Lista dei giorni in italiano, corrispondenti alle chiavi usate in gestione prenotazioni
         giorni = ["Lunedi", "Martedi", "Mercoledi", "Giovedi", "Venerdi", "Sabato", "Domenica"]
 
+        giorni_italian_to_english = {
+            "Lunedi": "Monday",
+            "Martedi": "Tuesday",
+            "Mercoledi": "Wednesday",
+            "Giovedi": "Thursday",
+            "Venerdi": "Friday",
+            "Sabato": "Saturday",
+            "Domenica": "Sunday"
+        }
+
         for giorno in giorni:
             # Recupera i widget dinamicamente in base al giorno
             timeEditApertura = self.findChild(QtWidgets.QTimeEdit, f"timeEdit{giorno}Apertura")
             timeEditChiusura = self.findChild(QtWidgets.QTimeEdit, f"timeEdit{giorno}Chiusura")
 
-            orario_apertura = self.gestore_prenotazioni.get_orario_apertura(giorno)
-            orario_chiusura = self.gestore_prenotazioni.get_orario_chiusura(giorno)
+            orario_apertura = self.gestore_prenotazioni.get_orario_apertura(giorni_italian_to_english[giorno])
+            orario_chiusura = self.gestore_prenotazioni.get_orario_chiusura(giorni_italian_to_english[giorno])
 
             # Converte la stringa "HH:mm" in QTime e imposta i campi
             qt_time_apertura = QTime.fromString(orario_apertura, "HH:mm")
@@ -34,6 +44,17 @@ class GestioneOrariForm(QtWidgets.QDialog):
 
     def invia_orari(self):
         giorni = ["Lunedi", "Martedi", "Mercoledi", "Giovedi", "Venerdi", "Sabato", "Domenica"]
+
+        giorni_italian_to_english = {
+            "Lunedi": "Monday",
+            "Martedi": "Tuesday",
+            "Mercoledi": "Wednesday",
+            "Giovedi": "Thursday",
+            "Venerdi": "Friday",
+            "Sabato": "Saturday",
+            "Domenica": "Sunday"
+        }
+
         try:
             for giorno in giorni:
                 timeEditApertura = self.findChild(QtWidgets.QTimeEdit, f"timeEdit{giorno}Apertura")
@@ -42,8 +63,8 @@ class GestioneOrariForm(QtWidgets.QDialog):
                 nuovo_apertura = timeEditApertura.time().toString("HH:mm")
                 nuovo_chiusura = timeEditChiusura.time().toString("HH:mm")
 
-                self.gestore_prenotazioni.set_orario_apertura(giorno, nuovo_apertura)
-                self.gestore_prenotazioni.set_orario_chiusura(giorno, nuovo_chiusura)
+                self.gestore_prenotazioni.set_orario_apertura(giorni_italian_to_english[giorno], nuovo_apertura)
+                self.gestore_prenotazioni.set_orario_chiusura(giorni_italian_to_english[giorno], nuovo_chiusura)
 
             self.gestore_prenotazioni.salva_orari_su_file("orari.json")
             self.accept()

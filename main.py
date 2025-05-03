@@ -133,7 +133,7 @@ class Ui(QtWidgets.QMainWindow):
 
     def apri_amministratore(self):
         if self.amministratore_form is None:
-            self.amministratore_form = AmministratoreForm(self.gestore_utenti, self.gestore_prenotazioni)
+            self.amministratore_form = AmministratoreForm(self.gestore_utenti, self.gestore_prenotazioni, self.gestore_servizi)
             self.amministratore_form.exec()
             self.amministratore_form = None
             self.gestore_utenti.salva_su_file()

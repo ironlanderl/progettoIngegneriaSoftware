@@ -5,18 +5,21 @@ from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg as FigureCanvas
 from Gestori.gestione_utenti import GestioneUtenti
 from Utenti.Statistiche import Statistiche
 from Gestori.gestione_prenotazioni import GestionePrenotazioni
+from Gestori.gestione_servizi import GestioneServizi
 
 from windows.visualizza_feedback import VisualizzaFeedbackForm
 from windows.gestione_orari import GestioneOrariForm
 from windows.visualizzazione_prenotazioni import VisualizzazionePrenotazioniForm
+from windows.gestione_servizi import GestioneServiziForm
 
 class AmministratoreForm(QtWidgets.QDialog):
-    def __init__(self, gestore_utenti: GestioneUtenti, gestore_prenotazioni: GestionePrenotazioni):
+    def __init__(self, gestore_utenti: GestioneUtenti, gestore_prenotazioni: GestionePrenotazioni, gestore_servizi: GestioneServizi):
         super().__init__()
         uic.loadUi('./windows/amministratore.ui', self)
 
         self.gestore_utenti = gestore_utenti
         self.gestore_prenotazioni = gestore_prenotazioni
+        self.gestore_servizi = gestore_servizi
         self.replace_label_with_graph()
 
         self.populate_accounts()
@@ -27,10 +30,12 @@ class AmministratoreForm(QtWidgets.QDialog):
         self.btnVisualizzaFeedback.clicked.connect(self.visualizza_feedback)
         self.btnModificaOrari.clicked.connect(self.modifica_orari)
         self.btnPrenotazioniEffettuate.clicked.connect(self.visualizza_prenotazioni)
+        self.btnModificaServizi.clicked.connect(self.gestione_servizi)
 
         self.visualizzaFeedbackForm = None
         self.modificaOrariForm = None
         self.visualizzaPrenotazioniForm = None
+        self.gestioneServiziForm = None
 
     def replace_label_with_graph(self):
         # Trova la label nel layout
@@ -106,3 +111,9 @@ class AmministratoreForm(QtWidgets.QDialog):
             self.visualizzaPrenotazioniForm = VisualizzazionePrenotazioniForm(self.gestore_prenotazioni)
             self.visualizzaPrenotazioniForm.exec()
             self.visualizzaPrenotazioniForm = None
+
+    def gestione_servizi(self):
+        if self.gestioneServiziForm is None:
+            self.gestioneServiziForm = GestioneServiziForm(self.gestore_servizi)
+            self.gestioneServiziForm.exec()
+            self.gestioneServiziForm = None
