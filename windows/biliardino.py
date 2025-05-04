@@ -22,6 +22,9 @@ class PrenotazioneBiliardinoForm(QtWidgets.QDialog):
         # Connetti un'azione quando si preme "Accetta" per leggere i valori
         self.buttonBox.accepted.connect(self.on_accept)
 
+        self.lstTavoli.itemSelectionChanged.connect(self.on_item_selection_changed)
+        self.tmeDurata.timeChanged.connect(self.calculate_total_cost)
+
     def on_accept(self):
         if not self.lstTavoli.currentItem():
             return
@@ -36,16 +39,32 @@ class PrenotazioneBiliardinoForm(QtWidgets.QDialog):
         )
         
         # Ottieni la data e ora della prenotazione dal QDateTimeEdit (widget "dateTimeEditData")
-        data_prenotazione = self.dteDataPrenotazione.date().toPyDate()
-        ora_prenotazione = self.tmeDurata.time().toPyTime()
-        data_ora_prenotazione = datetime.datetime.combine(data_prenotazione, datetime.datetime.min.time())
-        data_ora_prenotazione = data_ora_prenotazione.replace(hour=ora_prenotazione.hour, minute=ora_prenotazione.minute)
+        data_e_ora_prenotazione = self.dteDataPrenotazione.dateTime().toPyDateTime()
 
         # Aggiungi la prenotazione tramite il gestore prenotazioni
         try:
-            self.gestore_prenotazioni.aggiungi_prenotazione(tavolo_selezionato, data_ora_prenotazione, durata_delta, self.utente.username)
+            self.gestore_prenotazioni.aggiungi_prenotazione(tavolo_selezionato, data_e_ora_prenotazione, durata_delta, self.utente.username)
         except Exception as e:
             QtWidgets.QMessageBox.warning(self, "Errore", str(e))
             return
         
         self.accept()
+
+    def on_item_selection_changed(self):
+        selected_items = self.lstTavoli.selectedItems()
+        if selected_items:
+            print("Elementi selezionati:")
+            for item in selected_items:
+                print(item.text())
+                self.calculate_total_cost()
+        else:
+            print("Nessun elemento selezionato.")
+
+    def calculate_total_cost(self):
+        if not self.lstTavoli.currentItem():
+            return
+        campo_selezionato = self.tavoli_disponibili[self.lstTavoli.currentRow()]
+        durata = self.tmeDurata.time().toPyTime()
+        durata_delta = datetime.timedelta(hours=durata.hour, minutes=durata.minute, seconds=durata.second, microseconds=durata.microsecond)
+        costo_totale = campo_selezionato.calcola_costo(durata_delta)
+        self.lblCostoTotale.setText(f"Costo totale: {costo_totale}€")

@@ -30,7 +30,7 @@
          <item>
           <widget class="QListWidget" name="lstTavoli">
            <property name="selectionMode">
-            <enum>QAbstractItemView::SelectionMode::NoSelection</enum>
+            <enum>QAbstractItemView::SelectionMode::SingleSelection</enum>
            </property>
           </widget>
          </item>

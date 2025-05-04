@@ -15,7 +15,11 @@
   </property>
   <layout class="QVBoxLayout" name="layoutMain">
    <item>
-    <widget class="QListWidget" name="lstCampi"/>
+    <widget class="QListWidget" name="lstCampi">
+     <property name="selectionMode">
+      <enum>QAbstractItemView::SelectionMode::SingleSelection</enum>
+     </property>
+    </widget>
    </item>
    <item>
     <spacer name="spacerVerticalTop">
