@@ -26,7 +26,7 @@ class VisualizzazionePrenotazioniForm(QtWidgets.QDialog):
                 f"{prenotazione.data.strftime('%d/%m/%Y %H:%M')} - "
                 f"Durata: {prenotazione.durata} - "
                 f"Utente: {prenotazione.utente_prenotazione} - "
-                f"Costo Totale: {prenotazione.costo_totale}"
+                f"Costo Totale: {round(prenotazione.costo_totale, 2)} €"
             )
             self.lstPrenotazioni.addItem(testo)
 

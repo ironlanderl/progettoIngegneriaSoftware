@@ -56,8 +56,7 @@ class Prenotazione:
 
     @property
     def costo_totale(self):
-        """Calulated total cost"""
-        return self._servizio.costo * self.durata
+        return self._servizio.costo * (self.durata.total_seconds() / 3600)
 
     @property
     def utente_prenotazione(self):
