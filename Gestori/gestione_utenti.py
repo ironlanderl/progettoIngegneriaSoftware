@@ -10,7 +10,7 @@ class GestioneUtenti:
             self.leggi_da_file("utenti.pickle")
         else:
             # Creazione di un account di default
-            utente: Utente = Utente(nome="admin", cognome="admin", username="admin", password="adminadmin")
+            utente: Utente = Utente(nome="admin", cognome="admin", username="admin", password="admin")
             utente.amministratore = True
             self._utenti.append(utente)
             self.salva_su_file("utenti.pickle")
